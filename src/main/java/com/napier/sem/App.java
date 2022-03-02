@@ -6,18 +6,19 @@ public class App {
     /**
      * Main function
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // Create new Application
         App a = new App();
 
         // Connect to database
-        //a.connect();
-        // Get Employee
+        a.connect();
 
         // Display results
+        a.executeStatement();
+
 
         // Disconnect from database
-        //a.disconnect();
+        a.disconnect();
     }
 
     /**
@@ -45,7 +46,7 @@ public class App {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/employees?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("db/world.sql", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -72,6 +73,23 @@ public class App {
             } catch (Exception e) {
                 System.out.println("Error closing connection to database");
             }
+        }
+    }
+
+    /**
+     * SQL query.
+     */
+    public void executeStatement() throws SQLException {
+        Statement stmt = con.createStatement();
+        // Create string for SQL statement
+        String strSelect =
+                "SELECT country "
+                        + "FROM world "
+                        + "ORDER BY population DESC ";
+        // Execute SQL statement
+        ResultSet rset = stmt.executeQuery(strSelect);
+        if (rset.next()) {
+            System.out.println(rset.getString("country"));
         }
     }
 
