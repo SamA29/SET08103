@@ -3,6 +3,9 @@ package com.napier.sem;
 import java.sql.*;
 
 public class App {
+    /**
+     * Main function
+     */
     public static void main(String[] args) {
         // Create new Application
         App a = new App();
@@ -36,6 +39,7 @@ public class App {
 
         int retries = 10;
         for (int i = 0; i < retries; ++i) {
+            //Message to user
             System.out.println("Connecting to database...");
             try {
                 // Wait a bit for db to start
@@ -44,10 +48,14 @@ public class App {
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/employees?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
-            } catch (SQLException sqle) {
+            }
+            //If does not work
+            catch (SQLException sqle) {
                 System.out.println("Failed to connect to database attempt " + Integer.toString(i));
                 System.out.println(sqle.getMessage());
-            } catch (InterruptedException ie) {
+            }
+            //If does not work
+            catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
