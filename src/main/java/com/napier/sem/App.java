@@ -13,9 +13,10 @@ public class App {
         // Connect to database
         a.connect();
 
+        // Get Employee
+        //World w = a.getCountry();
         // Display results
-        a.executeStatement();
-
+        //a.displayCountry(w);
 
         // Disconnect from database
         a.disconnect();
@@ -46,7 +47,7 @@ public class App {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("db/world.sql", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -77,20 +78,45 @@ public class App {
     }
 
     /**
-     * SQL query.
+     * Get Country.
+     * @return World object
      */
-    public void executeStatement() throws SQLException {
-        Statement stmt = con.createStatement();
-        // Create string for SQL statement
-        String strSelect =
-                "SELECT country "
-                        + "FROM world "
-                        + "ORDER BY population DESC ";
-        // Execute SQL statement
-        ResultSet rset = stmt.executeQuery(strSelect);
-        if (rset.next()) {
-            System.out.println(rset.getString("country"));
+    public World getCountry() {
+        try {
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT world.country "
+                            + "FROM world "
+                            + "ORDER BY world.population DESC ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            if (rset.next()) {
+                World w = new World();
+                w.country = rset.getString("world.country");
+                w.city = rset.getString("world.city");
+                w.countryLanguage = rset.getString("world.countryLanguage");
+
+                return w;
+            } else
+                return null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
+            return null;
         }
     }
 
+    /**
+     * Display countries sorted by pop. largest to smallest
+     *
+     */
+    public void displayCountry(World w)
+    {
+        if (w != null)
+        {
+            //Display countries from world
+            System.out.println(w.country + " " + "\n");
+        }
+    }
 }
