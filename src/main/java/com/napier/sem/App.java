@@ -2,6 +2,11 @@ package com.napier.sem;
 
 import java.sql.*;
 
+/*
+ *  Created by Group 7: Pablo Sanchez, Alex Vazquez, Sam Alman, Valentina Kerecanina
+ *  Last Modification: 06/03/2022
+ * */
+
 public class App {
     /**
      * Main function
@@ -13,10 +18,10 @@ public class App {
         // Connect to database
         a.connect();
 
-        // Get Employee
-        //World w = a.getCountry();
-        // Display results
-        //a.displayCountry(w);
+        // Get country
+        Country c = a.getCountry();
+        // Display results of the SQL query
+        a.displayCountry(c);
 
         // Disconnect from database
         a.disconnect();
@@ -71,6 +76,7 @@ public class App {
             try {
                 // Close connection
                 con.close();
+                System.out.println("Disconnecting...");
             } catch (Exception e) {
                 System.out.println("Error closing connection to database");
             }
@@ -79,25 +85,25 @@ public class App {
 
     /**
      * Get Country.
-     * @return World object
+     * @return Country object
+     * @author Pablo Sanchez
      */
-    public World getCountry() {
+    public Country getCountry() {
         try {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT world.country "
-                            + "FROM world "
-                            + "ORDER BY world.population DESC ";
+                    "SELECT name "
+                            + "FROM country ";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             if (rset.next()) {
-                World w = new World();
-                w.country = rset.getString("world.country");
-                w.city = rset.getString("world.city");
-                w.countryLanguage = rset.getString("world.countryLanguage");
 
-                return w;
+                Country c = new Country();
+                c.name = rset.getString("name");
+               // c.population = rset.getInt("population");
+
+                return c;
             } else
                 return null;
         } catch (Exception e) {
@@ -108,15 +114,15 @@ public class App {
     }
 
     /**
-     * Display countries sorted by pop. largest to smallest
-     *
+     * Display information of the country object
+     * @author Pablo Sanchez
      */
-    public void displayCountry(World w)
+    public void displayCountry(Country c)
     {
-        if (w != null)
+        if (c != null)
         {
             //Display countries from world
-            System.out.println(w.country + " " + "\n");
+            System.out.println(c.name + "\n");
         }
     }
 }
