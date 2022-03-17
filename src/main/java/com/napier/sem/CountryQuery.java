@@ -3,6 +3,11 @@ package com.napier.sem;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Class created to do the country queries
+ * Last date of modification 17/03/2022
+ * @author Pablo Sanchez
+ */
 public class CountryQuery
 {
     /**
@@ -90,7 +95,7 @@ public class CountryQuery
         // execute the query
         ArrayList<Country> allCountries= processCountryQuery(query);
         if(allCountries.size() < limit) {
-            System.out.println("***Not enough countries for this ranking. Returning all countries in the world***");
+            System.out.println("Not enough countries for this ranking. Returning all countries in the world");
         }
         return allCountries;
     }
