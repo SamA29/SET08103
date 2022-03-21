@@ -3,6 +3,10 @@ package com.napier.sem;
 import java.sql.*;
 import java.util.ArrayList;
 
+
+import static com.napier.sem.PrintReport.*;
+import static com.napier.sem.CountryQuery.*;
+
 /**
  *  Created by Group 7: Pablo Sanchez, Alex Vazquez, Sam Alman, Valentina Kerecanina
  *  Main entry point of application
@@ -16,20 +20,49 @@ public class App {
     public static void main(String[] args) throws SQLException {
         // Create new Application
         App a = new App();
+        CountryQuery cq = new CountryQuery();
 
         // Connect to database
-        a.connect();
-
+        cq.connect();
         // Produce a report of all countries in the world organised by largest population to smallest
-        ArrayList<Country> allCountries = new ArrayList<>();
-        allCountries = a.getAllCountriesInWorld();
-
-        // Display results
+        ArrayList<Country> allCountries = cq.getAllCountriesInWorld();
         System.out.println("Report on all the countries in the world organised by largest population to smallest.");
-        a.displayCountries(allCountries);
+        displayCountries(allCountries); //Display results
+
+        // Produce a report of all countries in a continent organised by largest population to smallest
+        String continent = "Europe";
+        ArrayList<Country> continentCountries = cq.getAllCountriesInContinent(continent);
+        System.out.println("\n\nReport on all the countries in " + continent + " organised by largest population to smallest.");
+        displayCountries(continentCountries);   //Display results
+
+        // Produce a report of all countries in a region organised by largest population to smallest
+        String region = "Nordic Countries";
+        ArrayList<Country> regionCountries = cq.getAllCountriesInRegion(region);
+        System.out.println("\n\nReport on all the countries in " + region + " organised by largest population to smallest.");
+        displayCountries(regionCountries);   //Display results
+
+        // Produce a report of top N populated countries in the world
+        int n = 5;
+        ArrayList<Country> topNInWorld = cq.getTopNCountriesInWorld(n);
+        System.out.println("\n\nReport of top " + n + " populated countries in the world");
+        displayTopCountries(topNInWorld);
+
+        // Produce a report of top N populated countries in a continent
+        int nTopPopCont = 5;
+        String continentTopPop = "Europe";
+        ArrayList<Country> topNInContinent = cq.getTopNCountriesInContinent(continentTopPop, nTopPopCont);
+        System.out.println("\n\nReport of top " + nTopPopCont + " populated countries in " + continentTopPop);
+        displayTopCountries(topNInContinent);
+
+        // Produce a report of top N populated countries in a region
+        int nTopPopReg = 5;
+        String regionTopPop = "Baltic Countries";
+        ArrayList<Country> topNInRegion = cq.getTopNCountriesInRegion(regionTopPop, nTopPopReg);
+        System.out.println("\n\nReport of top " + nTopPopReg + " populated countries in " + regionTopPop);
+        displayTopCountries(topNInRegion);
 
         // Disconnect from database
-        a.disconnect();
+        cq.disconnect();
     }
 
     /**
@@ -88,117 +121,4 @@ public class App {
         }
     }
 
-    /**
-     * Returns all countries in the world, organised by the population from largest to smallest
-     * @return  list of Country objects
-     * @author Pablo Sanchez
-     */
-    public ArrayList<Country> getAllCountriesInWorld() {
-        ArrayList<Country> allCountries= new ArrayList<>(); // array to store all countries
-
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT Code, country.Name, Continent, Region, country.Population, city.Name AS 'Capital'"
-                            + "  FROM country LEFT JOIN city ON country.Capital = city.ID"
-                            + " ORDER BY Population DESC";
-
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-
-            // while there are new rows in the result set, keep creating new country objects
-            while (rset.next())
-            {
-                Country c = new Country();
-                c.setCode(rset.getString("code"));
-                c.setName(rset.getString("name"));
-                c.setPopulation(Integer.parseInt(rset.getString("population")));
-                c.setContinent(rset.getString("continent"));
-                c.setRegion(rset.getString("region"));
-                c.setCapital(rset.getString("capital"));
-                allCountries.add(c);
-            }
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get country data");
-            return null;
-        }
-        return allCountries;
-    }
-
-    /**
-     * Displays a list of countries
-     * @param countryList
-     * @author Pablo Sanchez
-     */
-    public void displayCountries(ArrayList<Country> countryList) {
-        String h1 = "Code", h2 = "Name", h3 = "Continent", h4 = "Region", h5 = "Population", h6 = "Capital";
-        // print a header
-        System.out.println(String.format("%-4s %-44s %-14s %-25s %-10s %-34s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
-        // print details of all countries in the list
-        for(Country c : countryList) {
-            String country = String.format("%-4s %-44s %-14s %-25s %-10d %-34s",
-                    c.getCode(), c.getName(), c.getContinent(), c.getRegion(), c.getPopulation(), c.getCapital());
-            System.out.println(country);
-        }
-    }
-
-    /**
-     * Create a Country object based on its code
-     * @param code  Country code
-     * @return      Country object created
-     * @author Pablo Sanchez
-     */
-    public Country getCountry(String code)
-    {
-        try
-        {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT code, name, population "
-                            + "FROM world.country "
-                            + "WHERE Code = " + code;
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new country if valid.
-            // Check one is returned
-            if (rset.next())
-            {
-                Country ctry = new Country();
-                ctry.setCode(rset.getString("code"));
-                ctry.setName(rset.getString("name"));
-                ctry.setPopulation(Integer.parseInt(rset.getString("population")));
-                return ctry;
-            }
-            else
-                return null;
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get country data");
-            return null;
-        }
-    }
-
-    /**
-     * Display the country object's data
-     * @param c  Country object to display
-     * @author Pablo Sanchez
-     */
-    public void displayCountry(Country c)
-    {
-        if (c != null)
-        {
-            System.out.println(
-                    c.getCode() + " "
-                            + c.getName() + " "
-                            + c.getPopulation() + "\n");
-        }
-    }
 }
