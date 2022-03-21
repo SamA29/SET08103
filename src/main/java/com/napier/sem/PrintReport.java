@@ -2,21 +2,25 @@ package com.napier.sem;
 
 import java.util.ArrayList;
 
+/**
+ * Class created to print reports for Countries
+ * @author Pablo Sanchez
+ * Last date of modification 21/03/2022
+ */
 public class PrintReport {
     /**
      * Displays a list of countries
-     * @param countryList   countries to display
+     * @param listOfCountries
      */
-    public static void displayCountries(ArrayList<Country> countryList) {
-        if (countryList == null || countryList.isEmpty()) {
+    public static void displayCountries(ArrayList<Country> listOfCountries) {
+        if (listOfCountries == null || listOfCountries.isEmpty()) {
             System.out.println("No countries to print");
         }
         else {
-            String h1 = "Code", h2 = "Name", h3 = "Continent", h4 = "Region", h5 = "Population", h6 = "Capital";
-            // print a header
-            System.out.println(String.format("%-4s %-44s %-14s %-25s %-10s %-34s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
+            // Print titles
+            System.out.println(String.format("%-5s %-44s %-14s %-25s %-10s %-34s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
             // print details of all countries in the list
-            for (Country c : countryList) {
+            for (Country c : listOfCountries) {
                 if(c == null) {
                     continue;
                 }
@@ -27,17 +31,20 @@ public class PrintReport {
         }
     }
 
-    public static void displayTopCountries(ArrayList<Country> countryList) {
-        if (countryList == null || countryList.isEmpty()) {
+    /**
+     * Display list of top countries
+     * @param listOfCountries
+     */
+    public static void displayTopCountries(ArrayList<Country> listOfCountries) {
+        if (listOfCountries == null || listOfCountries.isEmpty()) {
             System.out.println("No countries to print");
         }
         else {
-            String h1 = "Code", h2 = "Name", h3 = "Continent", h4 = "Region", h5 = "Population", h6 = "Capital";
-            // print a header
-            System.out.println(String.format("%3s %-4s %-44s %-14s %-25s %-10s %-34s", "No", "Code", "Name", "Continent", "Region", "Population", "Capital"));
+            // print titles
+            System.out.println(String.format("%4s %-4s %-44s %-14s %-25s %-10s %-34s", "Num", "Code", "Name", "Continent", "Region", "Population", "Capital"));
             // print details of all countries in the list
             int counter = 1;
-            for (Country c : countryList) {
+            for (Country c : listOfCountries) {
                 if(c == null) {
                     continue;
                 }

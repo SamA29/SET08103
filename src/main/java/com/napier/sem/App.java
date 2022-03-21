@@ -30,7 +30,7 @@ public class App {
         displayCountries(allCountries); //Display results
 
         // Produce a report of all countries in a continent organised by largest population to smallest
-        String continent = "Africa";
+        String continent = "Europe";
         ArrayList<Country> continentCountries = cq.getAllCountriesInContinent(continent);
         System.out.println("\n\nReport on all the countries in " + continent + " organised by largest population to smallest.");
         displayCountries(continentCountries);   //Display results
@@ -42,23 +42,23 @@ public class App {
         displayCountries(regionCountries);   //Display results
 
         // Produce a report of top N populated countries in the world
-        int n = 10;
+        int n = 5;
         ArrayList<Country> topNInWorld = cq.getTopNCountriesInWorld(n);
         System.out.println("\n\nReport of top " + n + " populated countries in the world");
         displayTopCountries(topNInWorld);
 
         // Produce a report of top N populated countries in a continent
-        int n2 = 10;
-        String continent2 = "Europe";
-        ArrayList<Country> topNInContinent = cq.getTopNCountriesInContinent(continent2, n2);
-        System.out.println("\n\nReport of top " + n2 + " populated countries in " + continent2);
+        int nTopPopCont = 5;
+        String continentTopPop = "Europe";
+        ArrayList<Country> topNInContinent = cq.getTopNCountriesInContinent(continentTopPop, nTopPopCont);
+        System.out.println("\n\nReport of top " + nTopPopCont + " populated countries in " + continentTopPop);
         displayTopCountries(topNInContinent);
 
         // Produce a report of top N populated countries in a region
-        int n3 = 10;
-        String region2 = "Baltic Countries";
-        ArrayList<Country> topNInRegion = cq.getTopNCountriesInRegion(region2, n3);
-        System.out.println("\n\nReport of top " + n3 + " populated countries in " + region2);
+        int nTopPopReg = 5;
+        String regionTopPop = "Baltic Countries";
+        ArrayList<Country> topNInRegion = cq.getTopNCountriesInRegion(regionTopPop, nTopPopReg);
+        System.out.println("\n\nReport of top " + nTopPopReg + " populated countries in " + regionTopPop);
         displayTopCountries(topNInRegion);
 
         // Disconnect from database

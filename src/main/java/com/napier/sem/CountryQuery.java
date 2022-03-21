@@ -65,6 +65,7 @@ public class CountryQuery
             }
         }
     }
+
     /**
      * Returns all countries in the world, organised by the population from largest to smallest
      * @return  list of Country objects
@@ -82,27 +83,27 @@ public class CountryQuery
 
     /**
      * Returns top N populated countries in the world
-     * @param limit number of countries to return
+     * @param n number of countries to return
      * @return  list of Country objects
      */
-    public ArrayList<Country> getTopNCountriesInWorld(int limit) {
+    public ArrayList<Country> getTopNCountriesInWorld(int n) {
         // query to get all countries in the world
         String query =
                 "SELECT Code, country.Name, Continent, Region, country.Population, city.Name AS 'Capital'"
                         + "  FROM country LEFT JOIN city ON country.Capital = city.ID"
                         + " ORDER BY Population DESC "
-                        + " LIMIT " + limit;
+                        + " LIMIT " + n;
         // execute the query
         ArrayList<Country> allCountries= processCountryQuery(query);
-        if(allCountries.size() < limit) {
-            System.out.println("Not enough countries for this ranking. Returning all countries in the world");
+        if(allCountries.size() < n) {
+            System.out.println("Not enough countries for this ranking.");
         }
         return allCountries;
     }
 
     /**
      * Returns all countries in the continent specified, organised by the population from largest to smallest
-     * @param continentName Name of the continent to extract
+     * @param continentName
      * @return List of countries in the continent
      */
     public ArrayList<Country> getAllCountriesInContinent(String continentName) {
@@ -136,7 +137,7 @@ public class CountryQuery
             return null;
         }
         if(countriesInContinent.size() < limit) {
-            System.out.println("***Not enough countries in continent for this ranking. Returning all in continent***");
+            System.out.println("Not enough countries in continent for this ranking. Returning all in continent");
         }
         return countriesInContinent;
     }
@@ -162,22 +163,22 @@ public class CountryQuery
     /**
      * Returns top N populated countries in the region specified
      * @param regionName    region to extract
-     * @param limit     countries to extract
+     * @param n     countries to extract
      * @return  list of Country objects
      */
-    public ArrayList<Country> getTopNCountriesInRegion(String regionName, int limit) {
+    public ArrayList<Country> getTopNCountriesInRegion(String regionName, int n) {
         String query = "SELECT Code, country.Name, Continent, Region, country.Population, city.Name AS 'Capital' " +
                 "FROM country LEFT JOIN city ON country.Capital = city.ID " +
                 "WHERE Region = '" + regionName + "' " +
                 "ORDER BY Population DESC " +
-                "LIMIT " + limit;
+                "LIMIT " + n;
         ArrayList<Country> countriesInRegion = processCountryQuery(query);
         if (countriesInRegion.isEmpty()) {
             System.out.println("Invalid region specified.");
             return null;
         }
-        if(countriesInRegion.size() < limit) {
-            System.out.println("***Not enough countries in region for this ranking. Returning all countries in region***");
+        if(countriesInRegion.size() < n) {
+            System.out.println("Not enough countries in region for this ranking. Returning all countries in region");
         }
         return countriesInRegion;
     }
