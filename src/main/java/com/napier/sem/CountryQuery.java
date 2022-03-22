@@ -59,7 +59,9 @@ public class CountryQuery
             try {
                 // Close connection
                 con.close();
-                System.out.println("Disconnecting...");
+                System.out.println("***********READ***********");
+                System.out.println("More coming!! Now, city reports ***(Please wait)***");
+
             } catch (Exception e) {
                 System.out.println("Error closing connection to database");
             }
@@ -96,7 +98,7 @@ public class CountryQuery
         // execute the query
         ArrayList<Country> allCountries= processCountryQuery(query);
         if(allCountries.size() < n) {
-            System.out.println("Not enough countries for this ranking.");
+            System.out.println("\n\n\nNot enough countries for this ranking.");
         }
         return allCountries;
     }
@@ -137,7 +139,7 @@ public class CountryQuery
             return null;
         }
         if(countriesInContinent.size() < limit) {
-            System.out.println("Not enough countries in continent for this ranking. Returning all in continent");
+            System.out.println("\n\n\nNot enough countries in continent for this ranking. Returning all in continent");
         }
         return countriesInContinent;
     }
@@ -178,7 +180,7 @@ public class CountryQuery
             return null;
         }
         if(countriesInRegion.size() < n) {
-            System.out.println("Not enough countries in region for this ranking. Returning all countries in region");
+            System.out.println("\n\n\nNot enough countries in region for this ranking. Returning all countries in region");
         }
         return countriesInRegion;
     }

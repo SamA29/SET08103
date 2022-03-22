@@ -5,7 +5,10 @@ package com.napier.sem;
  * @author Pablo Sanchez
  */
 public class City {
-
+    /**
+     * Id of the city
+     */
+    private int id;
     /**
      * Name of the city
      */
@@ -93,6 +96,14 @@ public class City {
      */
     public void setPopulation(long population) {
         this.population = population;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
 

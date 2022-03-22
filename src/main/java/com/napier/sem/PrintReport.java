@@ -65,13 +65,34 @@ public class PrintReport {
             System.out.println("No cities to print");
         } else {
             // print a header
-            System.out.println(String.format("%-25s   %-50s   %-47s   %-25s", "Name", "Country", "District", "Population"));
+            System.out.println(String.format("%-20s   %-50s   %-47s   %-25s", "Name", "Country", "District", "Population"));
             // print details of all countries in the list
             for (City c: listOfCities) {
                 if (c == null) {
                     continue;
                 }
-                String city = String.format("%-25s   %-50s   %-47s   %-25d",
+                String city = String.format("%-20s   %-50s   %-47s   %-25d",
+                        c.getName(), c.getCountry(), c.getDistrict(), c.getPopulation());
+                System.out.println(city);
+            }
+        }
+    }
+    /**
+     * Displays a list of cities
+     * @param listOfCities countries to display
+     */
+    public static void displayCitiesWorld(ArrayList <City> listOfCities) {
+        if (listOfCities == null || listOfCities.isEmpty()) {
+            System.out.println("No cities to print");
+        } else {
+            // print a header
+            System.out.println(String.format("%3s. %-20s   %-50s   %-47s   %-25s", "Id", "Name", "Country", "District", "Population"));
+            // print details of all countries in the list
+            for (City c: listOfCities) {
+                if (c == null) {
+                    continue;
+                }
+                String city = String.format("%2d. %-20s   %-50s   %-47s   %-25d", c.getId(),
                         c.getName(), c.getCountry(), c.getDistrict(), c.getPopulation());
                 System.out.println(city);
             }
