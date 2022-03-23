@@ -328,8 +328,23 @@ class AppTest
         cities = new ArrayList<>();
         int pass = 5;
         cities = a.getNCitiesInCountry(pass, "");
-
+    }
+    @Test
+    void testProcessCityQueryNull() {
+        a.processCityQuery(null);
+    }
+    @Test
+    void testProcessCityQuery() {
+        a.processCityQuery("query");
     }
 
-
+    CountryQuery countryQuery = new CountryQuery();
+    @Test
+    void testProcessCountryQueryNull(){
+        countryQuery.processCountryQuery(null);
+    }
+    @Test
+    void testProcessCountryQuery(){
+        countryQuery.processCountryQuery("query");
+    }
 }

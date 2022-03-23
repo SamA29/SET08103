@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  * Class created to do the country queries
- * Last date of modification 17/03/2022
+ * Last date of modification 21/03/2022
  * @author Pablo Sanchez
  */
 public class CountryQuery
@@ -59,8 +59,8 @@ public class CountryQuery
             try {
                 // Close connection
                 con.close();
-                System.out.println("***********READ***********");
-                System.out.println("More coming!! Now, city reports ***(Please wait)***");
+                System.out.println("\n\n***********READ***********");
+                System.out.println("More coming!! Now, city and capital cities reports ***(Please wait)***");
 
             } catch (Exception e) {
                 System.out.println("Error closing connection to database");

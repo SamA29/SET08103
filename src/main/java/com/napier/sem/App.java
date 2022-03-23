@@ -74,62 +74,78 @@ public class App {
 
         // Produce a report of all the cities in the world organised by largest population to smallest.
         cityReports = cityQuery.getAllCitiesInWorld();
-        System.out.println("\n\nA report of all the cities in the world organised by largest population to smallest.");
+        System.out.println("\n\nReport of all the cities in the world organised by largest population to smallest.");
         displayCities(cityReports);
 
 
         String continentName = "Africa";
         // Produce a report of all the cities in a continent organised by largest population to smallest.
         cityReports = cityQuery.getAllCitiesInContinent(continentName);
-        System.out.println("\n\nA report of all the cities on the continent "+ continentName +" organised by largest population to smallest.");
+        System.out.println("\n\nReport of all the cities on the continent "+ continentName +" organised by largest population to smallest.");
         displayCities(cityReports);
 
 
         String regionName = "Middle East";
         // Produce a report of all the cities in a region organised by largest population to smallest.
         cityReports = cityQuery.getAllCitiesInRegion(regionName);
-        System.out.println("\n\nA report of all the cities in the region " + regionName+ " organised by largest population to smallest.");
+        System.out.println("\n\nReport of all the cities in the region " + regionName+ " organised by largest population to smallest.");
         displayCities(cityReports);
 
 
         String countryName = "France";
         // Produce a report of all the cities in a country organised by largest population to smallest.
         cityReports = cityQuery.getAllCitiesInCountry(countryName);
-        System.out.println("\n\nA report of all the cities in a country " + countryName+ " organised by largest population to smallest.");
+        System.out.println("\n\nReport of all the cities in a country " + countryName+ " organised by largest population to smallest.");
         displayCities(cityReports);
 
 
         String districtName = "Île-de-France";
         // Produce a report of all the cities in a district organised by largest population to smallest.
         cityReports = cityQuery.getAllCitiesInDistrict(districtName);
-        System.out.println("\n\nA report of all the cities in the district  " + districtName + " organised by largest population to smallest. ");
+        System.out.println("\n\nReport of all the cities in the district  " + districtName + " organised by largest population to smallest. ");
         displayCities(cityReports);
 
         // Produce a report of the top N populated cities in the world where N is provided by the user.
         cityReports = cityQuery.getNCitiesInWorld(limit);
-        System.out.println("\n\nA report of the top " + limit + " populated cities in the world");
+        System.out.println("\n\nReport of the top " + limit + " populated cities in the world");
         displayTopCities(cityReports);
 
         // Produce a report of the top N populated cities in the continent where N is provided by the user.
         cityReports = cityQuery.getNCitiesInContinent(limit, continentName);
-        System.out.println("\n\nA report of the top " + limit + " populated cities on the continent: " + continentName);
+        System.out.println("\n\nReport of the top " + limit + " populated cities on the continent: " + continentName);
         displayTopCities(cityReports);
+
         // Produce a report of the top N populated cities in the region where N is provided by the user.
-
         cityReports = cityQuery.getNCitiesInRegion(limit, regionName);
-        System.out.println("\nA report of the top " + limit + " populated cities in the region: "+regionName);
+        System.out.println("\n\nReport of the top " + limit + " populated cities in the region: "+regionName);
         displayTopCities(cityReports);
+
         // Produce a report of the top N populated cities in the country where N is provided by the user.
-
         cityReports = cityQuery.getNCitiesInCountry(limit, countryName);
-        System.out.println("\nA report of the top " + limit + " populated cities in the country: " + countryName);
+        System.out.println("\n\nReport of the top " + limit + " populated cities in the country: " + countryName);
         displayTopCities(cityReports);
+
         // Produce a report of the top N populated cities in the district where N is provided by the user.
-
         cityReports = cityQuery.getNCitiesInDistrict(limit, districtName);
-        System.out.println("\nA report of the top " + limit + " populated cities in the district: " + districtName);
+        System.out.println("\n\nReport of the top " + limit + " populated cities in the district: " + districtName);
         displayTopCities(cityReports);
 
+        //Produce a report of the capital cities in the world organised by largest population to smallest.
+        System.out.println("\n\nReport of all capital cities");
+        cityReports = cityQuery.getAllCapitalCities();
+        cityQuery.displayCapitals(cityReports);
+
+        String continentCapCity = "Europe";
+        //Produce a report of the capital cities in a continent organised by largest population to smallest
+        System.out.println("\n\nReport of all capital cities");
+        cityReports = cityQuery.getAllCapitalCitiesInContinent(continentCapCity);
+        cityQuery.displayCapitals(cityReports);
+
+        String regionCapCity = "Middle East";
+        //Produce a report of the capital cities in a region organised by largest to smallest.
+        System.out.println("\n\nReport of all capital cities");
+        cityReports = cityQuery.getAllCapitalCitiesInContinent(continentCapCity);
+        cityQuery.displayCapitals(cityReports);
         // Disconnect from database
         cityQuery.disconnect();
     }

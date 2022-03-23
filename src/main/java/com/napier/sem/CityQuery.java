@@ -3,6 +3,11 @@ package com.napier.sem;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Class created to do the city and capital queries
+ * Last date of modification 23/03/2022
+ * @author Pablo Sanchez
+ */
 public class CityQuery
 {
     /**
@@ -54,8 +59,7 @@ public class CityQuery
             try {
                 // Close connection
                 con.close();
-                System.out.println("***********READ***********");
-                System.out.println("More coming!! Now, city reports ***(Please wait)***");
+                System.out.println("Disconnecting...");
             } catch (Exception e) {
                 System.out.println("Error closing connection to database");
             }
@@ -292,6 +296,155 @@ public class CityQuery
             System.out.println(e.getMessage());
             System.out.println("Failed to get city data");
             return null;
+        }
+    }
+
+    /**
+     * Display a list of capital cities organised largest to smallest population
+     * @return list of capital cities
+     * @Author Sam Alman
+     */
+    public ArrayList<City> getAllCapitalCities()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT ID, city.Name, country.name, District, city.Population " +
+                    "FROM city JOIN country ON (country.code = city.CountryCode) WHERE (Capital = ID)" +
+                    " ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            ArrayList<City> cities = new ArrayList<>();
+            while (rset.next())
+            {
+                City city = new City();
+                city.setId(rset.getInt("ID"));
+                city.setName(rset.getString("city.name"));
+                city.setCountry(rset.getString("country.name"));
+                city.setDistrict(rset.getString("District"));
+                city.setPopulation(rset.getInt("city.Population"));
+
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+        }
+        return null;
+    }
+
+    /**
+     * Gets all the capital cities in a continent organised by largest population to smallest.
+     * @param continent
+     * @return list of capital cities
+     * @Author Sam Alman
+     */
+    public ArrayList<City> getAllCapitalCitiesInContinent(String continent)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT ID, city.Name, country.name, District, city.Population " +
+                    "FROM city JOIN country ON (country.code = city.CountryCode) WHERE (Capital = ID) && continent = '" + continent +
+                    "' ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            ArrayList<City> cities = new ArrayList<>();
+            while (rset.next())
+            {
+                City city = new City();
+                city.setId(rset.getInt("ID"));
+                city.setName(rset.getString("city.name"));
+                city.setCountry(rset.getString("country.name"));
+                city.setDistrict(rset.getString("District"));
+                city.setPopulation(rset.getInt("city.Population"));
+
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+        }
+        return null;
+    }
+
+    /**
+     * Gets all the capital cities in a region organised by largest to smallest.
+     * @param regionName
+     * @return list of capital cities
+     * @Author Sam Alman
+     */
+    public ArrayList<City> allCapitalCitiesInRegion(String regionName)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT ID, city.Name, country.name, District, city.Population " +
+                    "FROM city JOIN country ON (country.code = city.CountryCode) WHERE (Capital = ID) && Region = '" + regionName +
+                    "' ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            ArrayList<City> cities = new ArrayList<>();
+            while (rset.next())
+            {
+                City city = new City();
+                city.setId(rset.getInt("ID"));
+                city.setName(rset.getString("city.name"));
+                city.setCountry(rset.getString("country.name"));
+                city.setDistrict(rset.getString("District"));
+                city.setPopulation(rset.getInt("city.Population"));
+
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+        }
+        return null;
+    }
+
+
+    /**Display a list of Capital Cities
+     * @Author Sam Alman
+     */
+    public void displayCapitals(ArrayList<City> allCapitals)
+    {
+        if (allCapitals == null)
+        {
+            System.out.println("No capital countries");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-30s %-30s %-20s", "Name", "Country", "Population"));
+        // Loop over all countries in the list
+        for (City city : allCapitals)
+        {
+            if (city == null)
+            {
+                continue;
+            }
+            System.out.println(String.format("%-30s %-30s %-20s", city.getName(), city.getCountry(), city.getPopulation()));
         }
     }
 

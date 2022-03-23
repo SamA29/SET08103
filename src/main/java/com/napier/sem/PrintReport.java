@@ -65,7 +65,7 @@ public class PrintReport {
             System.out.println("No cities to print");
         } else {
             // print a header
-            System.out.println(String.format("%-20s   %-50s   %-47s   %-25s", "Name", "Country", "District", "Population"));
+            System.out.println(String.format("%-20s   %-48s   %-47s   %-25s", "Name", "Country", "District", "Population"));
             // print details of all countries in the list
             for (City c: listOfCities) {
                 if (c == null) {
