@@ -133,7 +133,12 @@ public class CityQuery
                 "ORDER BY city.Population DESC LIMIT " + c + ";";
         ArrayList<City> cityList = new ArrayList<City>();
         cityList = processCityQuery(query);
-        if (cityList.isEmpty()) {
+        if(cityList == null)
+        {
+            System.out.println("Null list");
+            return cityList;
+        }
+        else if (cityList.isEmpty()) {
             System.out.println("Empty list");
             return cityList;
         } else if (cityList.size() < c) {
@@ -156,7 +161,12 @@ public class CityQuery
                 "ORDER BY city.Population DESC LIMIT " + c + ";";
         ArrayList<City> cityList = new ArrayList<City>();
         cityList = processCityQuery(query);
-        if (cityList.isEmpty()) {
+        if(cityList == null)
+        {
+            System.out.println("Null list");
+            return cityList;
+        }
+        else if (cityList.isEmpty()) {
             System.out.println("Empty list");
             return cityList;
         } else if (cityList.size() < c) {
@@ -178,7 +188,12 @@ public class CityQuery
                 "ORDER BY city.Population DESC LIMIT " + c + ";";
         ArrayList<City> cityList = new ArrayList<City>();
         cityList = processCityQuery(query);
-        if (cityList.isEmpty()) {
+        if(cityList == null)
+        {
+            System.out.println("Null list");
+            return cityList;
+        }
+        else if (cityList.isEmpty()) {
             System.out.println("Empty list");
             return cityList;
         } else if (cityList.size() < c) {
@@ -200,7 +215,12 @@ public class CityQuery
                 " ORDER BY city.Population DESC LIMIT " + c + ";";
         ArrayList<City> cityList = new ArrayList<City>();
         cityList = processCityQuery(query);
-        if (cityList.isEmpty()) {
+        if(cityList == null)
+        {
+            System.out.println("Null list");
+            return cityList;
+        }
+        else if (cityList.isEmpty()) {
             System.out.println("Empty list");
             return cityList;
         } else if (cityList.size() < c) {
@@ -222,7 +242,12 @@ public class CityQuery
                 "' ORDER BY Population DESC LIMIT " + c + ";";
         ArrayList<City> cityList = new ArrayList<City>();
         cityList = processCityQuery(query);
-        if (cityList.isEmpty()) {
+        if(cityList == null)
+        {
+            System.out.println("Null list");
+            return cityList;
+        }
+        else if (cityList.isEmpty()) {
             System.out.println("Empty list");
             return cityList;
         } else if (cityList.size() < c) {
