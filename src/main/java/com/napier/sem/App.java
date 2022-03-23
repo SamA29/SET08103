@@ -20,12 +20,18 @@ public class App {
     public static void main(String[] args) throws SQLException {
         // Create new Application
         App a = new App();
+
         CountryQuery cq = new CountryQuery();
         CityQuery cityQuery = new CityQuery();
 
         // Connect to database
-        cq.connect();
-        cityQuery.connect();
+        if(args.length < 1){
+            cq.connect("localhost:33060", 0);
+        }else{
+            cq.connect(args[0], Integer.parseInt(args[1]));
+        }
+
+
         // Produce a report of all countries in the world organised by largest population to smallest
         ArrayList<Country> allCountries = cq.getAllCountriesInWorld();
         System.out.println("Report on all the countries in the world organised by largest population to smallest.");
@@ -67,7 +73,11 @@ public class App {
         cq.disconnect();
 
         //Connect for the city queries
-        cityQuery.connect();
+        if(args.length < 1){
+            cityQuery.connect("localhost:33060", 0);
+        }else{
+            cityQuery.connect(args[0], Integer.parseInt(args[1]));
+        }
 
         ArrayList<City> cityReports = new ArrayList<City>();
         int limit = 5;
