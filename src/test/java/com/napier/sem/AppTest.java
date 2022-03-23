@@ -80,13 +80,13 @@ class AppTest
 
     @Test
     void displayCitiesTestEmptySet() {
-        cities = new ArrayList < > ();
+        cities = new ArrayList <> ();
         displayCities(cities);
     }
 
     @Test
     void displayCitiesTestSetContainsNull() {
-        cities = new ArrayList < > ();
+        cities = new ArrayList <> ();
         cities.add(null);
         displayCities(cities);
     }
@@ -105,7 +105,7 @@ class AppTest
 
     @Test
     void displayTopCitiesTestContainsNull() {
-        cities = new ArrayList < City > ();
+        cities = new ArrayList <City> ();
         cities.add(null);
         displayTopCountries(countries);
     }
@@ -122,7 +122,7 @@ class AppTest
     }
     @Test
     void displayTopCitiesTestEmptySet() {
-        cities = new ArrayList < > ();
+        cities = new ArrayList <> ();
         displayTopCities(cities);
     }
     @Test
@@ -165,7 +165,7 @@ class AppTest
     @Test
     void getAllCitiesInContinentTestFalse() {
         cities = new ArrayList<>();
-        String continent = "Boop";
+        String continent = "Foo";
         cities = a.getAllCitiesInContinent(continent);
     }
     @Test
@@ -177,7 +177,7 @@ class AppTest
     @Test
     void getAllCitiesInDistrictTestFalse() {
         cities = new ArrayList<>();
-        String district = "Boop";
+        String district = "Foo";
         cities = a.getAllCitiesInDistrict(district);
     }
     @Test
@@ -189,19 +189,19 @@ class AppTest
     @Test
     void getAllCitiesInCountryTestFalse() {
         cities = new ArrayList<>();
-        String country = "Boop";
+        String country = "Foo";
         cities = a.getAllCitiesInCountry(country);
     }
     @Test
     void getAllCitiesInCountryTestTrue() {
         cities = new ArrayList<>();
-        String country = "France";
+        String country = "Spain";
         cities = a.getAllCitiesInCountry(country);
     }
     @Test
     void getAllCitiesInRegionTestFalse() {
         cities = new ArrayList<>();
-        String region = "Boop";
+        String region = "Foo";
         cities = a.getAllCitiesInRegion(region);
     }
     @Test
@@ -219,7 +219,7 @@ class AppTest
     @Test
     void topNCitiesInWorldBigNumber(){
         cities = new ArrayList<>();
-        int pass = 70000000;
+        int pass = 99999999;
         cities = a.getNCitiesInWorld(pass);
         // assertEquals(cities, null);
 
@@ -227,7 +227,7 @@ class AppTest
     @Test
     void topNCitiesInWorldSmallNumber(){
         cities = new ArrayList<>();
-        int pass = -70000000;
+        int pass = -99999999;
         cities = a.getNCitiesInWorld(pass);
 
 
@@ -249,14 +249,14 @@ class AppTest
     @Test
     void topNCitiesInDistrictBigNumber(){
         cities = new ArrayList<>();
-        int pass = 70000000;
+        int pass = 99999999;
         cities =  a.getNCitiesInDistrict(pass, "");
 
     }
     @Test
     void topNCitiesInDistrictSmallNumber(){
         cities = new ArrayList<>();
-        int pass = -70000000;
+        int pass = -99999999;
         cities = a.getNCitiesInDistrict(pass, "");
 
     }
@@ -277,14 +277,14 @@ class AppTest
     @Test
     void topNCitiesInRegionBigNumber(){
         cities = new ArrayList<>();
-        int pass = 70000000;
+        int pass = 99999999;
         cities =  a.getNCitiesInRegion(pass, "");
 
     }
     @Test
     void topNCitiesInRegionSmallNumber(){
         cities = new ArrayList<>();
-        int pass = -70000000;
+        int pass = -99999999;
         cities = a.getNCitiesInRegion(pass, "");
 
     }
