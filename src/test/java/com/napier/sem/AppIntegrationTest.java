@@ -20,8 +20,6 @@ public class AppIntegrationTest {
     }
 
 
-
-
     @Test
     void testgetNCitiesInContinent() {
         ArrayList<City> top5 = app.getNCitiesInContinent(2, "Asia");

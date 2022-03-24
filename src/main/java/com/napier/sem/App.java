@@ -26,7 +26,7 @@ public class App {
 
         // Connect to database
         if(args.length < 1){
-            cq.connect("localhost:33060", 0);
+            cq.connect("localhost:33060", 30000);
         }else{
             cq.connect(args[0], Integer.parseInt(args[1]));
         }
@@ -72,9 +72,12 @@ public class App {
         // Disconnect from database
         cq.disconnect();
 
+
+
+
         //Connect for the city queries
         if(args.length < 1){
-            cityQuery.connect("localhost:33060", 0);
+            cityQuery.connect("localhost:33060", 30000);
         }else{
             cityQuery.connect(args[0], Integer.parseInt(args[1]));
         }
@@ -160,60 +163,5 @@ public class App {
         cityQuery.disconnect();
     }
 
-    /**
-     * Connection to MySQL database.
-     */
-    private Connection con = null;
-
-    /**
-     * Connect to the MySQL database.
-     */
-    public void connect() {
-        try {
-            // Load Database driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.out.println("Could not load SQL driver");
-            System.exit(-1);
-        }
-
-        int retries = 10;
-        for (int i = 0; i < retries; ++i) {
-            //Message to user
-            System.out.println("Connecting to database...");
-            try {
-                // Wait a bit for db to start
-                Thread.sleep(30000);
-                // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
-                System.out.println("Successfully connected");
-                break;
-            }
-            //If does not work
-            catch (SQLException sqle) {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
-                System.out.println(sqle.getMessage());
-            }
-            //If does not work
-            catch (InterruptedException ie) {
-                System.out.println("Thread interrupted? Should not happen.");
-            }
-        }
-    }
-
-    /**
-     * Disconnect from the MySQL database.
-     */
-    public void disconnect() {
-        if (con != null) {
-            try {
-                // Close connection
-                con.close();
-                System.out.println("Disconnecting...");
-            } catch (Exception e) {
-                System.out.println("Error closing connection to database");
-            }
-        }
-    }
 
 }
