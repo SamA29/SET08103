@@ -9,7 +9,26 @@ import static com.napier.sem.PrintReport.*;
 
 class AppTest
 {
+
+
+    /**
+     * Tests for display countries (PrintReport)
+     */
     ArrayList<Country> countries;
+
+    @Test
+    void displayCountriesBasic() {
+        countries = new ArrayList<>();
+        Country c = new Country();
+        c.setCode("ABW");
+        c.setName("Aruba");
+        c.setContinent("North America");
+        c.setPopulation(103000);
+        c.setCapital("Oranjestad");
+        c.setRegion("Caribbean");
+        countries.add(c);
+        displayCountries(countries);
+    }
 
     @Test
     void displayCountriesTestNull() {
@@ -29,18 +48,18 @@ class AppTest
         displayCountries(countries);
     }
 
+    /**
+     * Tests for display Top countries (PrintReport)
+     */
+
     @Test
-    void displayCountriesBasic() {
+    void displayTopCountriesBasic() {
         countries = new ArrayList<>();
         Country c = new Country();
-        c.setCode("CHN");
-        c.setName("China");
-        c.setContinent("Asia");
-        c.setPopulation(1277558000);
-        c.setCapital("Peking");
-        c.setRegion("Eastern Asia");
+        c.setCode("AFG");
+        c.setName("Afghanistan");
         countries.add(c);
-        displayCountries(countries);
+        displayTopCountries(countries);
     }
 
     @Test
@@ -61,14 +80,21 @@ class AppTest
         displayTopCountries(countries);
     }
 
+
+    /**
+     * Tests for display Cities (PrintReport)
+     */
+
     @Test
-    void displayTopCountriesBasic() {
-        countries = new ArrayList<>();
-        Country c = new Country();
-        c.setCode("GBR");
-        c.setName("United Kingdom");
-        countries.add(c);
-        displayTopCountries(countries);
+    void displayCitiesTestStandard() {
+        cities = new ArrayList < > ();
+        City city = new City();
+        city.setCountry("France");
+        city.setName("Paris");
+        city.setPopulation(90);
+        city.setDistrict("Île-de-France");
+        cities.add(city);
+        displayCities(cities);
     }
 
     @Test
@@ -90,24 +116,11 @@ class AppTest
         displayCities(cities);
     }
 
-    @Test
-    void displayCitiesTestStandard() {
-        cities = new ArrayList < > ();
-        City city = new City();
-        city.setCountry("France");
-        city.setName("Paris");
-        city.setPopulation(90);
-        city.setDistrict("Île-de-France");
-        cities.add(city);
-        displayCities(cities);
-    }
 
-    @Test
-    void displayTopCitiesTestContainsNull() {
-        cities = new ArrayList <City> ();
-        cities.add(null);
-        displayTopCountries(countries);
-    }
+    /**
+     * Tests for display Top Cities (PrintReport)
+     */
+
     @Test
     void displayTopCitiesTestStandard() {
         cities = new ArrayList < > ();
@@ -120,6 +133,13 @@ class AppTest
         displayTopCountries(countries);
     }
     @Test
+    void displayTopCitiesTestContainsNull() {
+        cities = new ArrayList <City> ();
+        cities.add(null);
+        displayTopCountries(countries);
+    }
+
+    @Test
     void displayTopCitiesTestEmptySet() {
         cities = new ArrayList <> ();
         displayTopCities(cities);
@@ -129,38 +149,14 @@ class AppTest
         displayTopCountries(null);
     }
 
-    @Test
-    void DisplayPopulationsTestNullEntry() {
-        countries = new ArrayList<>();
-        countries.add(null);
-        displayTopCountries(countries);
-    }
 
-    @Test
-    void DisplayPopulationsTestNull() {
-        displayTopCountries(null);
-    }
-    @Test
-    void DisplayPopulationsSimple() {
-        countries = new ArrayList<>();
-        Country c = new Country();
-        c.setCapital("Paris");
-        c.setPopulation(500);
-        c.setCode("Fra");
-        c.setRegion("Paris Region");
-        c.setContinent("Europe");
-        c.setName("France");
-        countries.add(c);
-        displayTopCountries(countries);
-    }
-    @Test
-    void DisplayPopulationsEmptySet() {
-        countries = new ArrayList<>();
-        displayTopCountries(countries);
-    }
+    /**
+     * Tests for display Top Cities (PrintReport)
+     */
 
     ArrayList <City> cities;
     Reports a = new Reports();
+
     @Test
     void getAllCitiesInContinentTestFalse() {
         cities = new ArrayList<>();
@@ -345,4 +341,10 @@ class AppTest
     void testProcessCountryQuery(){
         a.processCountryQuery("query");
     }
+
+    @Test
+    void testGetAllCountriesInWorld() {
+        a.getAllCountriesInWorld();
+    }
+
 }

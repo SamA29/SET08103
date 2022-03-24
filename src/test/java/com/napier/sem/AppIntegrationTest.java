@@ -21,7 +21,7 @@ public class AppIntegrationTest {
 
 
     @Test
-    void testgetNCitiesInContinent() {
+    void testGetNCitiesInContinent() {
         ArrayList<City> top5 = app.getNCitiesInContinent(2, "Asia");
         assertEquals(top5.size(), 2);
         assertEquals(top5.get(0).getName(), "Mumbai (Bombay)");
@@ -40,7 +40,7 @@ public class AppIntegrationTest {
     }
 
     @Test
-    void testgetNCitiesInWorld() {
+    void testGetNCitiesInWorld() {
         ArrayList<City> top5 = app.getNCitiesInWorld(2);
         assertEquals(top5.size(), 2);
         assertEquals(top5.get(0).getName(), "Mumbai (Bombay)");
