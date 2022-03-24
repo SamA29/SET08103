@@ -26,6 +26,10 @@ public class App {
             reports.connect(args[0], Integer.parseInt(args[1]));
         }
 
+        /*
+         *    *********************COUNTRY REPORTS*********************
+         * @author Pablo Sanchez
+         */
 
         // Produce a report of all countries in the world organised by largest population to smallest
         ArrayList<Country> allCountries = reports.getAllCountriesInWorld();
@@ -65,7 +69,10 @@ public class App {
         displayTopCountries(topNInRegion);
 
 
-
+        /*
+         *    *********************CITY  REPORTS*********************
+         * @author Pablo Sanchez, Alejandro Vazquez
+         */
 
         ArrayList<City> cityReports = new ArrayList<City>();
         int limit = 5;
@@ -75,13 +82,11 @@ public class App {
         System.out.println("\n\nReport of all the cities in the world organised by largest population to smallest.");
         displayCities(cityReports);
 
-
         String continentName = "Africa";
         // Produce a report of all the cities in a continent organised by largest population to smallest.
         cityReports = reports.getAllCitiesInContinent(continentName);
         System.out.println("\n\nReport of all the cities on the continent "+ continentName +" organised by largest population to smallest.");
         displayCities(cityReports);
-
 
         String regionName = "Middle East";
         // Produce a report of all the cities in a region organised by largest population to smallest.
@@ -89,13 +94,11 @@ public class App {
         System.out.println("\n\nReport of all the cities in the region " + regionName+ " organised by largest population to smallest.");
         displayCities(cityReports);
 
-
         String countryName = "France";
         // Produce a report of all the cities in a country organised by largest population to smallest.
         cityReports = reports.getAllCitiesInCountry(countryName);
         System.out.println("\n\nReport of all the cities in a country " + countryName+ " organised by largest population to smallest.");
         displayCities(cityReports);
-
 
         String districtName = "Île-de-France";
         // Produce a report of all the cities in a district organised by largest population to smallest.
@@ -128,6 +131,12 @@ public class App {
         System.out.println("\n\nReport of the top " + limit + " populated cities in the district: " + districtName);
         displayTopCities(cityReports);
 
+
+        /*
+         *    *********************CAPITAL CITIES REPORTS*********************
+         * @author Sam Alman
+         */
+
         //Produce a report of the capital cities in the world organised by largest population to smallest.
         System.out.println("\n\nReport of all capital cities");
         cityReports = reports.getAllCapitalCities();
@@ -142,7 +151,7 @@ public class App {
         String regionCapCity = "Middle East";
         //Produce a report of the capital cities in a region organised by largest to smallest.
         System.out.println("\n\nReport of all capital cities");
-        cityReports = reports.getAllCapitalCitiesInContinent(continentCapCity);
+        cityReports = reports.getAllCapitalCitiesInRegion(regionCapCity);
         reports.displayCapitals(cityReports);
         // Disconnect from database
         reports.disconnect();

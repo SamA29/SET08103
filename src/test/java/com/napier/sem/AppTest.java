@@ -151,7 +151,7 @@ class AppTest
 
 
     /**
-     * Tests for display Top Cities (PrintReport)
+     * Tests for get Cities (Reports)
      */
 
     ArrayList <City> cities;
@@ -333,6 +333,9 @@ class AppTest
         a.processCityQuery("query");
     }
 
+    /**
+     * Tests for Countries (Reports)
+     */
     @Test
     void testProcessCountryQueryNull(){
         a.processCountryQuery(null);
@@ -346,5 +349,78 @@ class AppTest
     void testGetAllCountriesInWorld() {
         a.getAllCountriesInWorld();
     }
+    @Test
+    void testGetTopNCountriesInWorldNegative() {
+        a.getTopNCountriesInWorld(-1);
+    }
+    @Test
+    void testGetTopNCountriesInWorld0() {
+        a.getTopNCountriesInWorld(0);
+    }
+    @Test
+    void testGetTopNCountriesInWorldBasic() {
+        a.getTopNCountriesInWorld(5);
+    }
+    @Test
+    void testGetAllCountriesInContinentBasic() {
+        a.getAllCountriesInContinent("Africa");
+    }
+    @Test
+    void testGetAllCountriesInContinentNull() {
+        a.getAllCountriesInContinent(null);
+    }
+    @Test
+    void testGetTopNCountriesInContinentBothWrong() {
+        a.getTopNCountriesInContinent(null, 0);
+    }
+    @Test
+    void testGetTopNCountriesInContinentWrongLimit() {
+        a.getTopNCountriesInContinent("Africa", -1);
+    }
+    @Test
+    void testGetTopNCountriesInContinentWrongCont() {
+        a.getTopNCountriesInContinent(null, 5);
+    }
+    @Test
+    void testGetTopNCountriesInContinentBasic() {
+        a.getTopNCountriesInContinent("Africa", 5);
+    }
+    @Test
+    void testGetAllCountriesInRegionBasic() {
+        a.getAllCountriesInRegion("Baltic Countries");
+    }
+    @Test
+    void testGetAllCountriesInRegionNull() {
+        a.getAllCountriesInRegion(null);
+    }
+    @Test
+    void testGetTopNCountriesInRegionBothWrong() {
+        a.getTopNCountriesInRegion(null, 0);
+    }
+    @Test
+    void testGetTopNCountriesInRegionWrongLimit() {
+        a.getTopNCountriesInRegion("Baltic Countries", -1);
+    }
+    @Test
+    void testGetTopNCountriesInRegionWrongRegion() {
+        a.getTopNCountriesInRegion(null, 4);
+    }
+    @Test
+    void testGetTopNCountriesInRegionBasic() {
+        a.getTopNCountriesInRegion("Baltic Countries", 5);
+    }
+    @Test
+    void testGetAllCapitalCitiesTrue() {
+        a.getAllCapitalCities();
+    }
+    @Test
+    void testGetAllCapitalCitiesInContinent() {
+        a.getAllCapitalCitiesInContinent("Africa");
+    }
+    @Test
+    void testGetAllCapitalCitiesInRegion() {
+        a.getAllCapitalCitiesInRegion("Caribbean");
+    }
+
 
 }

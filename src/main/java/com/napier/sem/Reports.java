@@ -64,7 +64,7 @@ public class Reports {
         }
     }
 
-    /**
+    /*
      *    *********************COUNTRY REPORTS*********************
      * @author Pablo Sanchez
      */
@@ -91,6 +91,10 @@ public class Reports {
      * @return  list of Country objects
      */
     public ArrayList<Country> getTopNCountriesInWorld(int n) {
+        if(n <= 0) {
+            System.out.println("Invalid number specified");
+            return null;
+        }
         // query to get all countries in the world
         String query =
                 "SELECT Code, country.Name, Continent, Region, country.Population, city.Name AS 'Capital'"
@@ -99,8 +103,10 @@ public class Reports {
                         + " LIMIT " + n;
         // execute the query
         ArrayList<Country> allCountries= processCountryQuery(query);
-        if(allCountries.size() < n) {
-            System.out.println("\n\n\nNot enough countries for this ranking.");
+        if (allCountries != null) {
+            if (allCountries.size() < n) {
+                System.out.println("\n\n\nLimit is bigger than number of countries in the list.");
+            }
         }
         return allCountries;
     }
@@ -117,9 +123,11 @@ public class Reports {
                 "WHERE Continent = '" + continentName + "' " +
                 "ORDER BY Population DESC";
         ArrayList<Country> countriesInContinent = processCountryQuery(query);
-        if (countriesInContinent.isEmpty()) {
-            System.out.println("Invalid continent specified.");
-            return null;
+        if(countriesInContinent != null) {
+            if (countriesInContinent.isEmpty()) {
+                System.out.println("Continent not valid");
+                return null;
+            }
         }
         return countriesInContinent;
     }
@@ -138,12 +146,14 @@ public class Reports {
                 "ORDER BY Population DESC " +
                 "LIMIT " + limit;
         ArrayList<Country> countriesInContinent = processCountryQuery(query);
-        if (countriesInContinent.isEmpty()) {
-            System.out.println("Invalid continent specified.");
-            return null;
-        }
-        if(countriesInContinent.size() < limit) {
-            System.out.println("\n\n\nNot enough countries in continent for this ranking. Returning all in continent");
+        if(countriesInContinent != null) {
+            if (countriesInContinent.isEmpty()) {
+                System.out.println("Invalid continent specified.");
+                return null;
+            }
+            if (countriesInContinent.size() < limit) {
+                System.out.println("\n\n\nNot enough countries in continent for this ranking. Returning all in continent");
+            }
         }
         return countriesInContinent;
     }
@@ -160,9 +170,11 @@ public class Reports {
                 "WHERE Region = '" + regionName + "' " +
                 "ORDER BY Population DESC";
         ArrayList<Country> countriesInRegion = processCountryQuery(query);
-        if (countriesInRegion.isEmpty()) {
-            System.out.println("Invalid region specified.");
-            return null;
+        if(countriesInRegion != null) {
+            if (countriesInRegion.isEmpty()) {
+                System.out.println("Invalid region specified.");
+                return null;
+            }
         }
         return countriesInRegion;
     }
@@ -181,12 +193,14 @@ public class Reports {
                 "ORDER BY Population DESC " +
                 "LIMIT " + n;
         ArrayList<Country> countriesInRegion = processCountryQuery(query);
-        if (countriesInRegion.isEmpty()) {
-            System.out.println("Invalid region specified.");
-            return null;
-        }
-        if(countriesInRegion.size() < n) {
-            System.out.println("\n\n\nNot enough countries in region for this ranking. Returning all countries in region");
+        if(countriesInRegion != null) {
+            if (countriesInRegion.isEmpty()) {
+                System.out.println("Invalid region specified.");
+                return null;
+            }
+            if (countriesInRegion.size() < n) {
+                System.out.println("\n\n\nNot enough countries in region for this ranking. Returning all countries in region");
+            }
         }
         return countriesInRegion;
     }
@@ -230,7 +244,7 @@ public class Reports {
     }
 
 
-    /**
+    /*
      *    *********************CITY REPORTS*********************
      * @author Pablo Sanchez, Alejandro Vazquez
      */
@@ -487,7 +501,7 @@ public class Reports {
         }
     }
 
-    /**
+    /*
      *    *********************CAPITAL CITY REPORTS*********************
      * @author Sam Alman
      */
@@ -582,7 +596,7 @@ public class Reports {
      * @return list of capital cities
      * @Author Sam Alman
      */
-    public ArrayList<City> allCapitalCitiesInRegion(String regionName)
+    public ArrayList<City> getAllCapitalCitiesInRegion(String regionName)
     {
         try
         {

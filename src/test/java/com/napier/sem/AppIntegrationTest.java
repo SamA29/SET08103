@@ -80,7 +80,7 @@ public class AppIntegrationTest {
     }
 
     @Test
-    void testgetNCitiesInDistrict() {
+    void testGetNCitiesInDistrict() {
         ArrayList<City> top5 = app.getNCitiesInDistrict(2, "Île-de-France");
         assertEquals(top5.size(), 2);
         assertEquals(top5.get(0).getName(), "Paris");
@@ -93,5 +93,52 @@ public class AppIntegrationTest {
         assertEquals(top5.size(), 2);
         assertEquals(top5.get(0).getName(), "Paris");
         assertEquals(top5.get(1).getName(), "Boulogne-Billancourt");
+    }
+    @Test
+    void testGetTopNCountriesInContinent() {
+        ArrayList<Country> top5 = app.getTopNCountriesInContinent("Asia", 2);
+        assertEquals(top5.size(), 2);
+        assertEquals(top5.get(0).getName(), "China");
+        assertEquals(top5.get(1).getName(), "India");
+    }
+
+    @Test
+    void testGetTopNCountriesInWorld() {
+        ArrayList<Country> top5 = app.getTopNCountriesInWorld(2);
+        assertEquals(top5.size(), 2);
+        assertEquals(top5.get(0).getName(), "China");
+        assertEquals(top5.get(1).getName(), "India");
+    }
+
+    @Test
+    void testGetTopNCountriesInRegion() {
+        ArrayList<Country> top5 = app.getTopNCountriesInRegion("Nordic Countries", 2);
+        assertEquals(top5.size(), 2);
+        assertEquals(top5.get(0).getName(), "Sweden");
+        assertEquals(top5.get(1).getName(), "Denmark");
+    }
+
+    @Test
+    void testGetAllCountriesInRegion() {
+        ArrayList<Country> top5 = app.getAllCountriesInRegion("Nordic Countries");
+        //assertEquals(top5.size(), 2);
+        assertEquals(top5.get(0).getName(), "Sweden");
+        assertEquals(top5.get(1).getName(), "Denmark");
+    }
+
+    @Test
+    void testGetAllCountriesInContinent() {
+        ArrayList<Country> top5 = app.getAllCountriesInContinent("Asia");
+        //assertEquals(top5.size(), 2);
+        assertEquals(top5.get(0).getName(), "China");
+        assertEquals(top5.get(1).getName(), "India");
+    }
+
+    @Test
+    void testGetAllCountriesInWorld() {
+        ArrayList<Country> top5 = app.getAllCountriesInWorld();
+        //assertEquals(top5.size(), 2);
+        assertEquals(top5.get(0).getName(), "China");
+        assertEquals(top5.get(1).getName(), "India");
     }
 }
