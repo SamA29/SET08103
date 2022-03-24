@@ -41,7 +41,7 @@ jobs:
           mvn -Dtest=com.napier.sem.AppIntegrationTest test
           docker stop employees
           docker rm employees
-          docker image rm database                    
+          docker image rm database
 
 
   build:
