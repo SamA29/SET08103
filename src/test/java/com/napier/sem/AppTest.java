@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static com.napier.sem.PrintReport.*;
-import static com.napier.sem.CountryQuery.*;
 
 class AppTest
 {
@@ -161,7 +160,7 @@ class AppTest
     }
 
     ArrayList <City> cities;
-    CityQuery a = new CityQuery();
+    Reports a = new Reports();
     @Test
     void getAllCitiesInContinentTestFalse() {
         cities = new ArrayList<>();
@@ -338,13 +337,12 @@ class AppTest
         a.processCityQuery("query");
     }
 
-    CountryQuery countryQuery = new CountryQuery();
     @Test
     void testProcessCountryQueryNull(){
-        countryQuery.processCountryQuery(null);
+        a.processCountryQuery(null);
     }
     @Test
     void testProcessCountryQuery(){
-        countryQuery.processCountryQuery("query");
+        a.processCountryQuery("query");
     }
 }

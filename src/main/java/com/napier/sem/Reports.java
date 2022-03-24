@@ -3,13 +3,13 @@ package com.napier.sem;
 import java.sql.*;
 import java.util.ArrayList;
 
+
 /**
- * Class created to do the city and capital queries
- * Last date of modification 23/03/2022
- * @author Pablo Sanchez
+ *  Class containing the methods for the reports
+ *  Last Modification: 24/03/2022
+ *  @author Pablo Sanchez
  */
-public class CityQuery
-{
+public class Reports {
     /**
      * Connection to MySQL database.
      */
@@ -37,7 +37,7 @@ public class CityQuery
                 con = DriverManager.getConnection("jdbc:mysql://" + location
                                 + "/world?allowPublicKeyRetrieval=true&useSSL=false",
                         "root", "example");
-                System.out.println("Successfully connected");
+                System.out.println("Successfully connected! Please wait");
                 break;
             } catch (SQLException sqle) {
                 System.out.println("Failed to connect to database attempt " +                                  Integer.toString(i));
@@ -56,12 +56,186 @@ public class CityQuery
             try {
                 // Close connection
                 con.close();
-                System.out.println("Disconnecting...");
+                System.out.println("\nDisconnecting...");
+
             } catch (Exception e) {
                 System.out.println("Error closing connection to database");
             }
         }
     }
+
+    /**
+     *    *********************COUNTRY REPORTS*********************
+     * @author Pablo Sanchez
+     */
+
+    /**
+     * Returns all countries in the world, organised by the population from largest to smallest
+     * @return  list of Country objects
+     */
+    public ArrayList<Country> getAllCountriesInWorld() {
+        // query to get all countries in the world
+        String query =
+                "SELECT Code, country.Name, Continent, Region, country.Population, city.Name AS 'Capital'"
+                        + "  FROM country LEFT JOIN city ON country.Capital = city.ID"
+                        + " ORDER BY Population DESC";
+        // execute the query
+        ArrayList<Country> allCountries= processCountryQuery(query);
+        return allCountries;
+    }
+
+
+    /**
+     * Returns top N populated countries in the world
+     * @param n number of countries to return
+     * @return  list of Country objects
+     */
+    public ArrayList<Country> getTopNCountriesInWorld(int n) {
+        // query to get all countries in the world
+        String query =
+                "SELECT Code, country.Name, Continent, Region, country.Population, city.Name AS 'Capital'"
+                        + "  FROM country LEFT JOIN city ON country.Capital = city.ID"
+                        + " ORDER BY Population DESC "
+                        + " LIMIT " + n;
+        // execute the query
+        ArrayList<Country> allCountries= processCountryQuery(query);
+        if(allCountries.size() < n) {
+            System.out.println("\n\n\nNot enough countries for this ranking.");
+        }
+        return allCountries;
+    }
+
+
+    /**
+     * Returns all countries in the continent specified, organised by the population from largest to smallest
+     * @param continentName
+     * @return List of countries in the continent
+     */
+    public ArrayList<Country> getAllCountriesInContinent(String continentName) {
+        String query = "SELECT Code, country.Name, Continent, Region, country.Population, city.Name AS 'Capital' " +
+                "FROM country LEFT JOIN city ON country.Capital = city.ID " +
+                "WHERE Continent = '" + continentName + "' " +
+                "ORDER BY Population DESC";
+        ArrayList<Country> countriesInContinent = processCountryQuery(query);
+        if (countriesInContinent.isEmpty()) {
+            System.out.println("Invalid continent specified.");
+            return null;
+        }
+        return countriesInContinent;
+    }
+
+
+    /**
+     * Returns top N populated countries in the continent specified
+     * @param continentName continent to extract
+     * @param limit number of countries to extract
+     * @return  list of Country objects
+     */
+    public ArrayList<Country> getTopNCountriesInContinent(String continentName, int limit) {
+        String query = "SELECT Code, country.Name, Continent, Region, country.Population, city.Name AS 'Capital' " +
+                "FROM country LEFT JOIN city ON country.Capital = city.ID " +
+                "WHERE Continent = '" + continentName + "' " +
+                "ORDER BY Population DESC " +
+                "LIMIT " + limit;
+        ArrayList<Country> countriesInContinent = processCountryQuery(query);
+        if (countriesInContinent.isEmpty()) {
+            System.out.println("Invalid continent specified.");
+            return null;
+        }
+        if(countriesInContinent.size() < limit) {
+            System.out.println("\n\n\nNot enough countries in continent for this ranking. Returning all in continent");
+        }
+        return countriesInContinent;
+    }
+
+
+    /**
+     * Returns a list of all countries in the region specified
+     * @param regionName    region to extract
+     * @return  list of Country objects
+     */
+    public ArrayList<Country> getAllCountriesInRegion(String regionName) {
+        String query = "SELECT Code, country.Name, Continent, Region, country.Population, city.Name AS 'Capital' " +
+                "FROM country LEFT JOIN city ON country.Capital = city.ID " +
+                "WHERE Region = '" + regionName + "' " +
+                "ORDER BY Population DESC";
+        ArrayList<Country> countriesInRegion = processCountryQuery(query);
+        if (countriesInRegion.isEmpty()) {
+            System.out.println("Invalid region specified.");
+            return null;
+        }
+        return countriesInRegion;
+    }
+
+
+    /**
+     * Returns top N populated countries in the region specified
+     * @param regionName    region to extract
+     * @param n     countries to extract
+     * @return  list of Country objects
+     */
+    public ArrayList<Country> getTopNCountriesInRegion(String regionName, int n) {
+        String query = "SELECT Code, country.Name, Continent, Region, country.Population, city.Name AS 'Capital' " +
+                "FROM country LEFT JOIN city ON country.Capital = city.ID " +
+                "WHERE Region = '" + regionName + "' " +
+                "ORDER BY Population DESC " +
+                "LIMIT " + n;
+        ArrayList<Country> countriesInRegion = processCountryQuery(query);
+        if (countriesInRegion.isEmpty()) {
+            System.out.println("Invalid region specified.");
+            return null;
+        }
+        if(countriesInRegion.size() < n) {
+            System.out.println("\n\n\nNot enough countries in region for this ranking. Returning all countries in region");
+        }
+        return countriesInRegion;
+    }
+
+
+    /**
+     * Processes an SQL query to get a list of countries
+     * @param query Query to process
+     * @return  a list of Country objects
+     */
+    public ArrayList<Country> processCountryQuery(String query) {
+        ArrayList<Country> countries = new ArrayList<>();
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(query);
+
+            //Extract country information
+            // while there are new rows in the result set, keep creating new country objects
+            while (rset.next())
+            {
+                Country c = new Country();
+
+                c.setCode(rset.getString("code"));
+                c.setName(rset.getString("name"));
+                c.setPopulation(Integer.parseInt(rset.getString("population")));
+                c.setContinent(rset.getString("continent"));
+                c.setRegion(rset.getString("region"));
+                c.setCapital(rset.getString("capital"));
+                countries.add(c);
+            }
+            return countries;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country data");
+            return null;
+        }
+    }
+
+
+    /**
+     *    *********************CITY REPORTS*********************
+     * @author Pablo Sanchez, Alejandro Vazquez
+     */
+
+
     /**
      * returns a list of cities in the world
      * @return a list of cities objects
@@ -75,6 +249,7 @@ public class CityQuery
         return cities;
     }
 
+
     /**
      * returns a list of cities on a continent
      * @return a list of cities objects
@@ -87,6 +262,8 @@ public class CityQuery
         ArrayList < City > cities = processCityQuery(query);
         return cities;
     }
+
+
     /**
      * returns a list of cities in a region
      * @return a list of cities objects
@@ -99,6 +276,8 @@ public class CityQuery
         ArrayList < City > cities = processCityQuery(query);
         return cities;
     }
+
+
     /**
      * returns a list of cities in a country
      * @return a list of cities objects
@@ -111,6 +290,8 @@ public class CityQuery
         ArrayList < City > cities = processCityQuery(query);
         return cities;
     }
+
+
     /**
      * returns a list of cities in a district
      * @return a list of cities objects
@@ -123,6 +304,8 @@ public class CityQuery
         ArrayList < City > cities = processCityQuery(query);
         return cities;
     }
+
+
     /**
      * returns a list of N cities on a continent
      * @param   c number of cities to return
@@ -148,6 +331,7 @@ public class CityQuery
 
         return cityList;
     }
+
 
     /**
      * returns a list of N cities on a continent
@@ -176,6 +360,8 @@ public class CityQuery
 
         return cityList;
     }
+
+
     /**
      * returns a list of N cities on a continent
      * @param  region to search on
@@ -203,6 +389,8 @@ public class CityQuery
 
         return cityList;
     }
+
+
     /**
      * returns a list of N cities on a continent
      * @param  country to search through
@@ -230,6 +418,8 @@ public class CityQuery
 
         return cityList;
     }
+
+
     /**
      * returns a list of N cities on a continent
      * @param  district to search through
@@ -257,6 +447,7 @@ public class CityQuery
 
         return cityList;
     }
+
 
     /**
      * Processes an SQL query to get a list of cities
@@ -295,6 +486,12 @@ public class CityQuery
             return null;
         }
     }
+
+    /**
+     *    *********************CAPITAL CITY REPORTS*********************
+     * @author Sam Alman
+     */
+
 
     /**
      * Display a list of capital cities organised largest to smallest population
@@ -444,5 +641,4 @@ public class CityQuery
             System.out.println(String.format("%-30s %-30s %-20s", city.getName(), city.getCountry(), city.getPopulation()));
         }
     }
-
 }

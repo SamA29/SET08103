@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AppIntegrationTest {
-    static CityQuery app;
+    static Reports app;
 
     @BeforeAll
     static void init() {
-        app = new CityQuery();
+        app = new Reports();
         app.connect("localhost:33060", 30000);
     }
 
