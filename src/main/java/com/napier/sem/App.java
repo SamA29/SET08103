@@ -138,19 +138,19 @@ public class App {
          */
 
         //Produce a report of the capital cities in the world organised by largest population to smallest.
-        System.out.println("\n\nReport of all capital cities");
+        System.out.println("\n\nReport of all capital cities organised by largest population to smallest");
         cityReports = reports.getAllCapitalCities();
         reports.displayCapitals(cityReports);
 
         String continentCapCity = "Europe";
         //Produce a report of the capital cities in a continent organised by largest population to smallest
-        System.out.println("\n\nReport of all capital cities");
+        System.out.println("\n\nReport of all capital cities in a continent organised by largest population to smallest");
         cityReports = reports.getAllCapitalCitiesInContinent(continentCapCity);
         reports.displayCapitals(cityReports);
 
         String regionCapCity = "Middle East";
         //Produce a report of the capital cities in a region organised by largest to smallest.
-        System.out.println("\n\nReport of all capital cities");
+        System.out.println("\n\nReport of all capital cities in a region organised by largest to smallest.");
         cityReports = reports.getAllCapitalCitiesInRegion(regionCapCity);
         reports.displayCapitals(cityReports);
         // Disconnect from database
