@@ -153,8 +153,16 @@ public class App {
         System.out.println("\n\nReport of all capital cities in a region organised by largest to smallest.");
         cityReports = reports.getAllCapitalCitiesInRegion(regionCapCity);
         reports.displayCapitals(cityReports);
+
+        //Produce a report of the top N populated capital cities in a region where N is provided by the user
+        ArrayList <CapitalCity> getNCapitalCitiesInRegion = reports.getNCapitalCitiesInRegion("Southern Europe", 5);
+        System.out.println("Report on the top N populated capital cities in a region");
+        displayCapitalCities(getNCapitalCitiesInRegion);
+
+
         // Disconnect from database
         reports.disconnect();
+
     }
 
 

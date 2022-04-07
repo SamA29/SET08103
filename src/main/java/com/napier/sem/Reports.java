@@ -655,4 +655,66 @@ public class Reports {
             System.out.println(String.format("%-30s %-30s %-20s", city.getName(), city.getCountry(), city.getPopulation()));
         }
     }
+
+    /**
+     * Processes an SQL query to get a list of capital cities
+     * @param query Query to process
+     * @return  arraylist of capital cities
+     */
+    public ArrayList <CapitalCity> processCapitalCityQuery(String query) {
+        ArrayList <CapitalCity> cities = new ArrayList <CapitalCity> ();
+
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(query);
+
+            //Extract country information
+            // while there are new rows in the result set, keep creating new country objects
+            while (rset.next()) {
+                CapitalCity c = new CapitalCity();
+
+                c.setID(rset.getString("ID"));
+                c.setName(rset.getString("Name"));
+                c.setCountryCode(rset.getString("CountryCode"));
+                c.setDistrict(rset.getString("District"));
+                c.setPopulation(rset.getString("Population"));
+
+                cities.add(c);
+            }
+            return cities;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital city data");
+            return null;
+        }
+    }
+
+
+
+    /**
+     * Returns the top N populated capital cities in a region where N is provided by the user
+     * @return  list of CapitalCity objects
+     */
+    public ArrayList <CapitalCity> getNCapitalCitiesInRegion(String region, int limit) {
+        // Prepare SQL query as string
+        String query = "SELECT * FROM city JOIN country ON country.Capital = city.id WHERE country.Region = '" + region + "' ORDER BY city.Population DESC LIMIT " + limit;
+        // Execute query
+        ArrayList <CapitalCity> res = processCapitalCityQuery(query);
+
+        if(res != null) {
+            if (res.isEmpty()) {
+                System.out.println("Invalid region specified.");
+                return null;
+            }
+            if (res.size() < limit) {
+                System.out.println("***Not enough capital cities in region for this ranking. Returning all capital's in region***");
+            }
+        }
+        return res;
+    }
+
+
 }
