@@ -421,6 +421,9 @@ class AppTest
     void testGetAllCapitalCitiesInRegion() {
         a.getAllCapitalCitiesInRegion("Caribbean");
     }
-
+    @Test
+    void testGetNCapitalCitiesInRegionWrongRegion() {
+        a.getNCapitalCitiesInRegion(null, 4);
+    }
 
 }
