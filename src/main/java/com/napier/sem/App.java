@@ -170,7 +170,10 @@ public class App {
         System.out.println("Report on top N populated capital cities in a continent");
         displayCapitalCities(getNCapitalCitiesInContinent);
 
-
+        /*
+         *    *********************POPULATION REPORTS*********************
+         * @author Pablo Sanchez
+         */
         // Call population by continent
         ArrayList<Population> allPopulationsContinent = new ArrayList<>();
         allPopulationsContinent = reports.getPopulationInCityByContinent();
