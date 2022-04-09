@@ -716,5 +716,22 @@ public class Reports {
         return res;
     }
 
+    /**
+     * Returns the top N populated capital cities
+     * @return  list of CapitalCity objects
+     */
+    public ArrayList <CapitalCity> getNCapitalCitiesPopulation(int limit) {
+        // Prepare SQL query as string
+        String query = "SELECT * FROM city JOIN country ON country.Capital = city.id ORDER BY city.Population DESC LIMIT " + limit;
+        // Execute query
+        ArrayList <CapitalCity> res = processCapitalCityQuery(query);
+
+        if(res != null) {
+            if (res.size() < limit) {
+                System.out.println("***Not enough capital cities for limit provided.***");
+            }
+        }
+        return res;
+    }
 
 }

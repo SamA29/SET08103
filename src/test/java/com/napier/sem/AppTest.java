@@ -425,5 +425,12 @@ class AppTest
     void testGetNCapitalCitiesInRegionWrongRegion() {
         a.getNCapitalCitiesInRegion(null, 4);
     }
-
+    @Test
+    void testGetNCapitalCitiesPopulationWrongLimit() {
+        a.getNCapitalCitiesPopulation(-1);
+    }
+    @Test
+    void testGetNCapitalCitiesPopulationBasic() {
+        a.getNCapitalCitiesPopulation(5);
+    }
 }

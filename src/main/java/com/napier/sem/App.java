@@ -160,6 +160,11 @@ public class App {
         displayCapitalCities(getNCapitalCitiesInRegion);
 
 
+        // Produce a report of the top N populated capital cities
+        ArrayList <CapitalCity> getNCapitalCitiesPopulation = reports.getNCapitalCitiesPopulation(5);
+        System.out.println("Report on the top N populated capital cities in the world");
+        displayCapitalCities(getNCapitalCitiesPopulation);
+
         // Disconnect from database
         reports.disconnect();
 
