@@ -141,4 +141,27 @@ public class AppIntegrationTest {
         assertEquals(top5.get(0).getName(), "China");
         assertEquals(top5.get(1).getName(), "India");
     }
+
+
+    @Test
+    void testGetNCapitalCitiesInRegion() {
+        ArrayList<CapitalCity> top5 = app.getNCapitalCitiesInRegion("Southern Europe", 5);
+        //  assertEquals(top5.size(), 2);
+        assertEquals(top5.get(0).getName(), "Madrid");
+        assertEquals(top5.get(1).getName(), "Roma");
+    }
+    @Test
+    void testGetNCapitalCitiesPopulation() {
+        ArrayList<CapitalCity> top5 = app.getNCapitalCitiesPopulation(5);
+        //  assertEquals(top5.size(), 2);
+        assertEquals(top5.get(0).getName(), "Seoul");
+        assertEquals(top5.get(1).getName(), "Jakarta");
+    }
+    @Test
+    void testGetNCapitalCitiesInContinent() {
+        ArrayList<CapitalCity> top5 = app.getNCapitalCitiesInContinent("Asia", 5);
+        //  assertEquals(top5.size(), 2);
+        assertEquals(top5.get(0).getName(), "Seoul");
+        assertEquals(top5.get(1).getName(), "Jakarta");
+    }
 }
