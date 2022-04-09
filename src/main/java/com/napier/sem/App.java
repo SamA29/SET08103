@@ -170,6 +170,28 @@ public class App {
         System.out.println("Report on top N populated capital cities in a continent");
         displayCapitalCities(getNCapitalCitiesInContinent);
 
+
+        // Call population by continent
+        ArrayList<Population> allPopulationsContinent = new ArrayList<>();
+        allPopulationsContinent = reports.getPopulationInCityByContinent();
+        System.out.println("\nA report of the population of the people living in cities and outside cities in each continent");
+        displayPopulations(allPopulationsContinent, "Continent");
+        System.out.println("");
+        System.out.println("");
+
+
+
+        // Call population by region
+        ArrayList<Population> allPopulationsRegion = new ArrayList<>();
+        allPopulationsRegion = reports.getPopulationInCityByRegion();
+        System.out.println("\nA report of the population of the people living in cities and outside cities in each region");
+        displayPopulations(allPopulationsRegion, "Region");
+        System.out.println("");
+        System.out.println("");
+
+        // Call the language query
+        reports.getLanguage();
+
         // Disconnect from database
         reports.disconnect();
 
