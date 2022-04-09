@@ -174,6 +174,7 @@ public class App {
          *    *********************POPULATION REPORTS*********************
          * @author Pablo Sanchez
          */
+        
         // Call population by continent
         ArrayList<Population> allPopulationsContinent = new ArrayList<>();
         allPopulationsContinent = reports.getPopulationInCityByContinent();
