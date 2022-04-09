@@ -433,4 +433,19 @@ class AppTest
     void testGetNCapitalCitiesPopulationBasic() {
         a.getNCapitalCitiesPopulation(5);
     }
+
+    @Test
+    void testGetNCapitalCitiesInContinentBothWrong() { a.getNCapitalCitiesInContinent(null, 0); }
+    @Test
+    void testGetNCapitalCitiesInContinentWrongLimit() {
+        a.getNCapitalCitiesInContinent("Asia", -1);
+    }
+    @Test
+    void testGetNCapitalCitiesInContinentWrongContinent() {
+        a.getNCapitalCitiesInContinent(null, 5);
+    }
+    @Test
+    void testGetNCapitalCitiesInContinentBasic() {
+        a.getNCapitalCitiesInContinent("Asia", 5);
+    }
 }

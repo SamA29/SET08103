@@ -734,4 +734,27 @@ public class Reports {
         return res;
     }
 
+
+    /**
+     * Returns the top N populated capital cities in a continent
+     * @return  list of CapitalCity objects
+     */
+    public ArrayList <CapitalCity> getNCapitalCitiesInContinent(String continent, int limit) {
+        // Prepare SQL query as string
+        String query = "SELECT * FROM city JOIN country ON country.Capital = city.id WHERE country.Continent = '" + continent + "' ORDER BY city.Population DESC LIMIT " + limit;
+        // Execute query
+        ArrayList <CapitalCity> res = processCapitalCityQuery(query);
+
+        if(res != null) {
+            if (res.isEmpty()) {
+                System.out.println("Invalid continent specified.");
+                return null;
+            }
+            if (res.size() < limit) {
+                System.out.println("***Not enough capital cities in continent for this ranking. Returning all capital's in continent***");
+            }
+        }
+
+        return res;
+    }
 }
