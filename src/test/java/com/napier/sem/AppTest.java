@@ -448,4 +448,85 @@ class AppTest
     void testGetNCapitalCitiesInContinentBasic() {
         a.getNCapitalCitiesInContinent("Asia", 5);
     }
+
+    // *** language tests ***
+    @Test
+    void testLanguage(){
+        a.getLanguage();
+    }
+    @Test
+    void testDisplayLanguageNull(){
+        displayLanguage(null);
+    }
+    @Test
+    void testDisplayLanguageEmpty(){
+        ArrayList languages = new ArrayList();
+        displayLanguage(languages);
+    }
+    @Test
+    void testClassLanguage(){
+        Language c = new Language();
+        c.setLanguage("Chinese");
+        c.setPercentage(20);
+        c.setPopulation(15000);
+        c.getLanguage();
+        c.getPercentage();
+        c.getPopulation();
+    }
+    @Test
+    void testDisplayLanguageNormal(){
+        ArrayList <Language> languages = new ArrayList();
+        Language l = new Language(900000, "Arabic", 17);
+
+        languages.add(l);
+        displayLanguage(languages);
+    }
+    @Test
+    void testDisplayLanguageNullEntry(){
+        ArrayList <Language> languages = new ArrayList();
+        languages.add(null);
+        displayLanguage(languages);
+    }
+
+    // *** Population reports ***
+    @Test
+    void getTestPopulationInCityByContinent(){
+        a.getPopulationInCityByContinent();
+    }
+    @Test
+    void getTestPopulationInCityByCountry(){
+        a.getPopulationInCityByCountry();
+    }
+    @Test
+    void getTestPopulationInCityByRegion(){
+        a.getPopulationInCityByRegion();
+    }
+    @Test
+    void testLanguageConstructor(){
+        Language l = new Language();
+        l.setLanguage("Russian");
+        l.setPopulation(12);
+        l.setPercentage(1);
+        l.getLanguage();
+        l.getPercentage();
+        l.getPopulation();
+        l.toString();
+        Language l2 = new Language( 12, "Swedish",3);
+    }
+    @Test
+    void testPopulationConstructor(){
+        Population p = new Population();
+        p.setCityPopulation(40000);
+        p.setCityPopulationPercent(12);
+        p.setName("Scottish");
+        p.setNotCityPopulation(90000);
+        p.setNonCityPopulationPercent(88);
+        p.getCityPopulation();
+        p.getCityPopulationPercent();
+        p.getName();
+        p.getNotCityPopulation();
+        p.getNonCityPopulationPercent();
+        p.toString();
+    }
+
 }
