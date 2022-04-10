@@ -11,9 +11,7 @@ class AppTest
 {
 
 
-    /**
-     * Tests for display countries (PrintReport)
-     */
+    // Tests for display countries (PrintReport)
     ArrayList<Country> countries;
 
     @Test
@@ -48,9 +46,8 @@ class AppTest
         displayCountries(countries);
     }
 
-    /**
-     * Tests for display Top countries (PrintReport)
-     */
+    // Tests for display Top countries (PrintReport)
+
 
     @Test
     void displayTopCountriesBasic() {
@@ -81,9 +78,7 @@ class AppTest
     }
 
 
-    /**
-     * Tests for display Cities (PrintReport)
-     */
+    //Tests for display Cities (PrintReport)
 
     @Test
     void displayCitiesTestStandard() {
@@ -117,13 +112,11 @@ class AppTest
     }
 
 
-    /**
-     * Tests for display Top Cities (PrintReport)
-     */
+    // Tests for display Top Cities (PrintReport)
 
     @Test
     void displayTopCitiesTestStandard() {
-        cities = new ArrayList < > ();
+        cities = new ArrayList <> ();
         City city = new City();
         city.setName("Paris");
         city.setPopulation(400);
@@ -150,9 +143,7 @@ class AppTest
     }
 
 
-    /**
-     * Tests for get Cities (Reports)
-     */
+    // Tests for get Cities (Reports)
 
     ArrayList <City> cities;
     Reports a = new Reports();
@@ -333,9 +324,7 @@ class AppTest
         a.processCityQuery("query");
     }
 
-    /**
-     * Tests for Countries (Reports)
-     */
+    // Tests for Countries (Reports)
     @Test
     void testProcessCountryQueryNull(){
         a.processCountryQuery(null);
@@ -416,6 +405,10 @@ class AppTest
     @Test
     void testGetAllCapitalCitiesInContinent() {
         a.getAllCapitalCitiesInContinent("Africa");
+    }
+    @Test
+    void testGetAllCapitalCitiesInContinentWrongContinent() {
+        a.getAllCapitalCitiesInContinent(null);
     }
     @Test
     void testGetAllCapitalCitiesInRegion() {
