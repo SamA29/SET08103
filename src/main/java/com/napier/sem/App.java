@@ -108,7 +108,6 @@ public class App {
             displayTopCountries(topNInContinent);
         }
 
-
         // Produce a report of top N populated countries in a region
         Scanner limitPopulatedCountriesRegion = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated countries in the Baltic Countries");
