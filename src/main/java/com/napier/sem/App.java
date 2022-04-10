@@ -53,6 +53,10 @@ public class App {
         Scanner limitPopulatedCountriesWorld = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated countries");
         int n = limitPopulatedCountriesWorld.nextInt();
+        if(n == 0)
+        {
+            n = 3;
+        }
         ArrayList<Country> topNInWorld = reports.getTopNCountriesInWorld(n);
         System.out.println("\n\nReport of top " + n + " populated countries in the world");
         displayTopCountries(topNInWorld);
@@ -61,6 +65,10 @@ public class App {
         Scanner limitPopulatedC = new Scanner(System.in);
         System.out.println("\nPlease input the limit fot the most populated countries in Europe");
         int nTopPopCont = limitPopulatedC.nextInt();
+        if(nTopPopCont == 0)
+        {
+            nTopPopCont = 3;
+        }
         String continentTopPop = "Europe";
         ArrayList<Country> topNInContinent = reports.getTopNCountriesInContinent(continentTopPop, nTopPopCont);
         System.out.println("\n\nReport of top " + nTopPopCont + " populated countries in " + continentTopPop);
@@ -70,6 +78,10 @@ public class App {
         Scanner limitPopulatedCountriesRegion = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated countries in the Baltic Countries");
         int nTopPopReg = limitPopulatedCountriesRegion.nextInt();
+        if(nTopPopReg == 0)
+        {
+            nTopPopReg = 3;
+        }
         String regionTopPop = "Baltic Countries";
         ArrayList<Country> topNInRegion = reports.getTopNCountriesInRegion(regionTopPop, nTopPopReg);
         System.out.println("\n\nReport of top " + nTopPopReg + " populated countries in " + regionTopPop);
@@ -117,6 +129,10 @@ public class App {
         Scanner limitPopulatedCityWorld = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated cities in the world:");
         limit = limitPopulatedCityWorld.nextInt();
+        if(limit == 0)
+        {
+            limit = 3;
+        }
         cityReports = reports.getNCitiesInWorld(limit);
         System.out.println("\n\nReport of the top " + limit + " populated cities in the world");
         displayTopCities(cityReports);
@@ -125,6 +141,10 @@ public class App {
         Scanner limitPopulatedCityContinent = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated cities in Africa:");
         limit = limitPopulatedCityContinent.nextInt();
+        if(limit == 0)
+        {
+            limit = 3;
+        }
         cityReports = reports.getNCitiesInContinent(limit, continentName);
         System.out.println("\n\nReport of the top " + limit + " populated cities on the continent: " + continentName);
         displayTopCities(cityReports);
@@ -133,6 +153,10 @@ public class App {
         Scanner limitPopulatedCityRegion = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated cities in Middle East:");
         limit = limitPopulatedCityRegion.nextInt();
+        if(limit == 0)
+        {
+            limit = 3;
+        }
         cityReports = reports.getNCitiesInRegion(limit, regionName);
         System.out.println("\n\nReport of the top " + limit + " populated cities in the region: "+regionName);
         displayTopCities(cityReports);
@@ -141,6 +165,10 @@ public class App {
         Scanner limitPopulatedCityCountry = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated cities in France:");
         limit = limitPopulatedCityCountry.nextInt();
+        if(limit == 0)
+        {
+            limit = 3;
+        }
         cityReports = reports.getNCitiesInCountry(limit, countryName);
         System.out.println("\n\nReport of the top " + limit + " populated cities in the country: " + countryName);
         displayTopCities(cityReports);
@@ -149,6 +177,10 @@ public class App {
         Scanner limitPopulatedCityDistrict = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated cities in Ile-De-France:");
         limit = limitPopulatedCityDistrict.nextInt();
+        if(limit == 0)
+        {
+            limit = 3;
+        }
         cityReports = reports.getNCitiesInDistrict(limit, districtName);
         System.out.println("\n\nReport of the top " + limit + " populated cities in the district: " + districtName);
         displayTopCities(cityReports);
@@ -180,6 +212,10 @@ public class App {
         Scanner limitPopulatedCapitalCityRegion = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated capital cities in Southern Europe:");
         limit = limitPopulatedCapitalCityRegion.nextInt();
+        if(limit == 0)
+        {
+            limit = 3;
+        }
         ArrayList <CapitalCity> getNCapitalCitiesInRegion = reports.getNCapitalCitiesInRegion("Southern Europe", limit);
         System.out.println("Report on the top " + limit + " populated capital cities in Southern Europe");
         displayCapitalCities(getNCapitalCitiesInRegion);
@@ -188,6 +224,10 @@ public class App {
         Scanner limitPopulatedCapitalCityWorld = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated capital cities in the world:");
         limit = limitPopulatedCapitalCityWorld.nextInt();
+        if(limit == 0)
+        {
+            limit = 3;
+        }
         ArrayList <CapitalCity> getNCapitalCitiesPopulation = reports.getNCapitalCitiesPopulation(limit);
         System.out.println("Report on the top " + limit + " populated capital cities in the world");
         displayCapitalCities(getNCapitalCitiesPopulation);
@@ -196,6 +236,10 @@ public class App {
         Scanner limitPopulatedCapitalCityContinent = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated capital cities in Asia:");
         limit = limitPopulatedCapitalCityContinent.nextInt();
+        if(limit == 0)
+        {
+            limit = 3;
+        }
         ArrayList <CapitalCity> getNCapitalCitiesInContinent = reports.getNCapitalCitiesInContinent("Asia", limit);
         System.out.println("Report on top " + limit + " populated capital cities in a continent");
         displayCapitalCities(getNCapitalCitiesInContinent);
