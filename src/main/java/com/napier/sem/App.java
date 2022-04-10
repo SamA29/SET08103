@@ -53,6 +53,7 @@ public class App {
         // Produce a report of top N populated countries in the world
         Scanner limitPopulatedCountriesWorld = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated countries");
+        //Try - catch to pass GitHub Action
         try
         {
             String nText =  limitPopulatedCountriesWorld.nextLine();
@@ -80,6 +81,7 @@ public class App {
         // Produce a report of top N populated countries in a continent where N is provided by the user.
         Scanner limitPopulatedC = new Scanner(System.in);
         System.out.println("\nPlease input the limit fot the most populated countries in Europe");
+        //Try - catch to pass GitHub Action
         try
         {
             String nTopPopContText = limitPopulatedC.nextLine();
@@ -110,6 +112,7 @@ public class App {
         // Produce a report of top N populated countries in a region
         Scanner limitPopulatedCountriesRegion = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated countries in the Baltic Countries");
+        //Try - catch to pass GitHub Action
         try
         {
             String nTopPopRegText = limitPopulatedCountriesRegion.nextLine();
@@ -178,6 +181,7 @@ public class App {
         // Produce a report of the top N populated cities in the world where N is provided by the user where N is provided by the user.
         Scanner limitPopulatedCityWorld = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated cities in the world:");
+        //Try - catch to pass GitHub Action
         try
         {
             limit = limitPopulatedCityWorld.nextInt();
@@ -200,6 +204,7 @@ public class App {
         // Produce a report of the top N populated cities in the continent where N is provided by the user where N is provided by the user.
         Scanner limitPopulatedCityContinent = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated cities in Africa:");
+        //Try - catch to pass GitHub Action
         try
         {
             limit = limitPopulatedCityContinent.nextInt();
@@ -221,6 +226,7 @@ public class App {
         // Produce a report of the top N populated cities in the region where N is provided by the user where N is provided by the user.
         Scanner limitPopulatedCityRegion = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated cities in Middle East:");
+        //Try - catch to pass GitHub Action
         try
         {
             limit = limitPopulatedCityRegion.nextInt();
@@ -243,6 +249,7 @@ public class App {
         // Produce a report of the top N populated cities in the country where N is provided by the user where N is provided by the user.
         Scanner limitPopulatedCityCountry = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated cities in France:");
+        //Try - catch to pass GitHub Action
         try
         {
             limit = limitPopulatedCityCountry.nextInt();
@@ -265,6 +272,7 @@ public class App {
         // Produce a report of the top N populated cities in the district where N is provided by the user where N is provided by the user.
         Scanner limitPopulatedCityDistrict = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated cities in Ile-De-France:");
+        //Try - catch to pass GitHub Action
         try
         {
             limit = limitPopulatedCityDistrict.nextInt();
@@ -310,6 +318,7 @@ public class App {
         //Produce a report of the top N populated capital cities in a region where N is provided by the user
         Scanner limitPopulatedCapitalCityRegion = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated capital cities in Southern Europe:");
+        //Try - catch to pass GitHub Action
         try
         {
             limit = limitPopulatedCapitalCityRegion.nextInt();
@@ -332,6 +341,7 @@ public class App {
         // Produce a report of the top N populated capital cities
         Scanner limitPopulatedCapitalCityWorld = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated capital cities in the world:");
+        //Try - catch to pass GitHub Action
         try
         {
             limit = limitPopulatedCapitalCityWorld.nextInt();
@@ -354,6 +364,7 @@ public class App {
         // Produce a report of the top N populated capital cities in a continent
         Scanner limitPopulatedCapitalCityContinent = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated capital cities in Asia:");
+        //Try - catch to pass GitHub Action
         try
         {
             limit = limitPopulatedCapitalCityContinent.nextInt();
