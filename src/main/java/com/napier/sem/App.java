@@ -2,6 +2,8 @@ package com.napier.sem;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 import static com.napier.sem.PrintReport.*;
 
@@ -49,24 +51,94 @@ public class App {
         displayCountries(regionCountries);   //Display results
 
         // Produce a report of top N populated countries in the world
-        int n = 5;
-        ArrayList<Country> topNInWorld = reports.getTopNCountriesInWorld(n);
-        System.out.println("\n\nReport of top " + n + " populated countries in the world");
-        displayTopCountries(topNInWorld);
+        Scanner limitPopulatedCountriesWorld = new Scanner(System.in);
+        System.out.println("\nPlease input the limit for the most populated countries");
+        //Try - catch to pass GitHub Action
+        try
+        {
+            String nText =  limitPopulatedCountriesWorld.nextLine();
+            int n;
+            if(nText.isEmpty() || nText.equals(null))
+            {
+                n = 3;
+            }
+            else
+            {
+                n = Integer.parseInt(nText);
+            }
+            ArrayList<Country> topNInWorld = reports.getTopNCountriesInWorld(n);
+            System.out.println("\n\nReport of top " + n + " populated countries in the world");
+            displayTopCountries(topNInWorld);
+        }
+        catch(NoSuchElementException e)
+        {
+            int n = 3;
+            ArrayList<Country> topNInWorld = reports.getTopNCountriesInWorld(n);
+            System.out.println("\n\nReport of top " + n + " populated countries in the world");
+            displayTopCountries(topNInWorld);
+        }
 
-        // Produce a report of top N populated countries in a continent
-        int nTopPopCont = 5;
-        String continentTopPop = "Europe";
-        ArrayList<Country> topNInContinent = reports.getTopNCountriesInContinent(continentTopPop, nTopPopCont);
-        System.out.println("\n\nReport of top " + nTopPopCont + " populated countries in " + continentTopPop);
-        displayTopCountries(topNInContinent);
+        // Produce a report of top N populated countries in a continent where N is provided by the user.
+        Scanner limitPopulatedC = new Scanner(System.in);
+        System.out.println("\nPlease input the limit fot the most populated countries in Europe");
+        //Try - catch to pass GitHub Action
+        try
+        {
+            String nTopPopContText = limitPopulatedC.nextLine();
+            int nTopPopCont;
+            if(nTopPopContText.isEmpty() || nTopPopContText.equals(null))
+            {
+                nTopPopCont = 3;
+            }
+            else
+            {
+                nTopPopCont = Integer.parseInt(nTopPopContText);
+            }
+            String continentTopPop = "Europe";
+            ArrayList<Country> topNInContinent = reports.getTopNCountriesInContinent(continentTopPop, nTopPopCont);
+            System.out.println("\n\nReport of top " + nTopPopCont + " populated countries in " + continentTopPop);
+            displayTopCountries(topNInContinent);
+        }
+        catch (NoSuchElementException e)
+        {
+            int nTopPopCont = 3;
+            String continentTopPop = "Europe";
+            ArrayList<Country> topNInContinent = reports.getTopNCountriesInContinent(continentTopPop, nTopPopCont);
+            System.out.println("\n\nReport of top " + nTopPopCont + " populated countries in " + continentTopPop);
+            displayTopCountries(topNInContinent);
+        }
+
 
         // Produce a report of top N populated countries in a region
-        int nTopPopReg = 5;
-        String regionTopPop = "Baltic Countries";
-        ArrayList<Country> topNInRegion = reports.getTopNCountriesInRegion(regionTopPop, nTopPopReg);
-        System.out.println("\n\nReport of top " + nTopPopReg + " populated countries in " + regionTopPop);
-        displayTopCountries(topNInRegion);
+        Scanner limitPopulatedCountriesRegion = new Scanner(System.in);
+        System.out.println("\nPlease input the limit for the most populated countries in the Baltic Countries");
+        //Try - catch to pass GitHub Action
+        try
+        {
+            String nTopPopRegText = limitPopulatedCountriesRegion.nextLine();
+            int nTopPopReg;
+            if(nTopPopRegText.isEmpty() || nTopPopRegText.equals(null))
+            {
+                nTopPopReg = 3;
+            }
+            else
+            {
+                nTopPopReg = Integer.parseInt(nTopPopRegText);
+            }
+            String regionTopPop = "Baltic Countries";
+            ArrayList<Country> topNInRegion = reports.getTopNCountriesInRegion(regionTopPop, nTopPopReg);
+            System.out.println("\n\nReport of top " + nTopPopReg + " populated countries in " + regionTopPop);
+            displayTopCountries(topNInRegion);
+        }
+        catch (NoSuchElementException e)
+        {
+            int nTopPopReg = 3;
+            String regionTopPop = "Baltic Countries";
+            ArrayList<Country> topNInRegion = reports.getTopNCountriesInRegion(regionTopPop, nTopPopReg);
+            System.out.println("\n\nReport of top " + nTopPopReg + " populated countries in " + regionTopPop);
+            displayTopCountries(topNInRegion);
+        }
+
 
 
         /*
@@ -106,30 +178,119 @@ public class App {
         System.out.println("\n\nReport of all the cities in the district  " + districtName + " organised by largest population to smallest. ");
         displayCities(cityReports);
 
-        // Produce a report of the top N populated cities in the world where N is provided by the user.
-        cityReports = reports.getNCitiesInWorld(limit);
-        System.out.println("\n\nReport of the top " + limit + " populated cities in the world");
-        displayTopCities(cityReports);
+        // Produce a report of the top N populated cities in the world where N is provided by the user where N is provided by the user.
+        Scanner limitPopulatedCityWorld = new Scanner(System.in);
+        System.out.println("\nPlease input the limit for the most populated cities in the world:");
+        //Try - catch to pass GitHub Action
+        try
+        {
+            limit = limitPopulatedCityWorld.nextInt();
+            if(limit == 0)
+            {
+                limit = 3;
+            }
+            cityReports = reports.getNCitiesInWorld(limit);
+            System.out.println("\n\nReport of the top " + limit + " populated cities in the world");
+            displayTopCities(cityReports);
+        }
+        catch (NoSuchElementException e)
+        {
+            cityReports = reports.getNCitiesInWorld(limit);
+            System.out.println("\n\nReport of the top " + limit + " populated cities in the world");
+            displayTopCities(cityReports);
+        }
 
-        // Produce a report of the top N populated cities in the continent where N is provided by the user.
-        cityReports = reports.getNCitiesInContinent(limit, continentName);
-        System.out.println("\n\nReport of the top " + limit + " populated cities on the continent: " + continentName);
-        displayTopCities(cityReports);
 
-        // Produce a report of the top N populated cities in the region where N is provided by the user.
-        cityReports = reports.getNCitiesInRegion(limit, regionName);
-        System.out.println("\n\nReport of the top " + limit + " populated cities in the region: "+regionName);
-        displayTopCities(cityReports);
+        // Produce a report of the top N populated cities in the continent where N is provided by the user where N is provided by the user.
+        Scanner limitPopulatedCityContinent = new Scanner(System.in);
+        System.out.println("\nPlease input the limit for the most populated cities in Africa:");
+        //Try - catch to pass GitHub Action
+        try
+        {
+            limit = limitPopulatedCityContinent.nextInt();
+            if(limit == 0)
+            {
+                limit = 3;
+            }
+            cityReports = reports.getNCitiesInContinent(limit, continentName);
+            System.out.println("\n\nReport of the top " + limit + " populated cities on the continent: " + continentName);
+            displayTopCities(cityReports);
+        }
+        catch (NoSuchElementException e)
+        {
+            cityReports = reports.getNCitiesInContinent(limit, continentName);
+            System.out.println("\n\nReport of the top " + limit + " populated cities on the continent: " + continentName);
+            displayTopCities(cityReports);
+        }
 
-        // Produce a report of the top N populated cities in the country where N is provided by the user.
-        cityReports = reports.getNCitiesInCountry(limit, countryName);
-        System.out.println("\n\nReport of the top " + limit + " populated cities in the country: " + countryName);
-        displayTopCities(cityReports);
+        // Produce a report of the top N populated cities in the region where N is provided by the user where N is provided by the user.
+        Scanner limitPopulatedCityRegion = new Scanner(System.in);
+        System.out.println("\nPlease input the limit for the most populated cities in Middle East:");
+        //Try - catch to pass GitHub Action
+        try
+        {
+            limit = limitPopulatedCityRegion.nextInt();
+            if(limit == 0)
+            {
+                limit = 3;
+            }
+            cityReports = reports.getNCitiesInRegion(limit, regionName);
+            System.out.println("\n\nReport of the top " + limit + " populated cities in the region: "+regionName);
+            displayTopCities(cityReports);
+        }
+        catch (NoSuchElementException e)
+        {
+            cityReports = reports.getNCitiesInRegion(limit, regionName);
+            System.out.println("\n\nReport of the top " + limit + " populated cities in the region: "+regionName);
+            displayTopCities(cityReports);
+        }
 
-        // Produce a report of the top N populated cities in the district where N is provided by the user.
-        cityReports = reports.getNCitiesInDistrict(limit, districtName);
-        System.out.println("\n\nReport of the top " + limit + " populated cities in the district: " + districtName);
-        displayTopCities(cityReports);
+
+        // Produce a report of the top N populated cities in the country where N is provided by the user where N is provided by the user.
+        Scanner limitPopulatedCityCountry = new Scanner(System.in);
+        System.out.println("\nPlease input the limit for the most populated cities in France:");
+        //Try - catch to pass GitHub Action
+        try
+        {
+            limit = limitPopulatedCityCountry.nextInt();
+            if(limit == 0)
+            {
+                limit = 3;
+            }
+            cityReports = reports.getNCitiesInCountry(limit, countryName);
+            System.out.println("\n\nReport of the top " + limit + " populated cities in the country: " + countryName);
+            displayTopCities(cityReports);
+        }
+        catch (NoSuchElementException e)
+        {
+            cityReports = reports.getNCitiesInCountry(limit, countryName);
+            System.out.println("\n\nReport of the top " + limit + " populated cities in the country: " + countryName);
+            displayTopCities(cityReports);
+        }
+
+
+        // Produce a report of the top N populated cities in the district where N is provided by the user where N is provided by the user.
+        Scanner limitPopulatedCityDistrict = new Scanner(System.in);
+        System.out.println("\nPlease input the limit for the most populated cities in Ile-De-France:");
+        //Try - catch to pass GitHub Action
+        try
+        {
+            limit = limitPopulatedCityDistrict.nextInt();
+            if(limit == 0)
+            {
+                limit = 3;
+            }
+            cityReports = reports.getNCitiesInDistrict(limit, districtName);
+            System.out.println("\n\nReport of the top " + limit + " populated cities in the district: " + districtName);
+            displayTopCities(cityReports);
+        }
+        catch (NoSuchElementException e)
+        {
+            cityReports = reports.getNCitiesInDistrict(limit, districtName);
+            System.out.println("\n\nReport of the top " + limit + " populated cities in the district: " + districtName);
+            displayTopCities(cityReports);
+        }
+
 
 
         /*
@@ -155,26 +316,78 @@ public class App {
         reports.displayCapitals(cityReports);
 
         //Produce a report of the top N populated capital cities in a region where N is provided by the user
-        ArrayList <CapitalCity> getNCapitalCitiesInRegion = reports.getNCapitalCitiesInRegion("Southern Europe", 5);
-        System.out.println("Report on the top N populated capital cities in a region");
-        displayCapitalCities(getNCapitalCitiesInRegion);
+        Scanner limitPopulatedCapitalCityRegion = new Scanner(System.in);
+        System.out.println("\nPlease input the limit for the most populated capital cities in Southern Europe:");
+        //Try - catch to pass GitHub Action
+        try
+        {
+            limit = limitPopulatedCapitalCityRegion.nextInt();
+            if(limit == 0)
+            {
+                limit = 3;
+            }
+            ArrayList <CapitalCity> getNCapitalCitiesInRegion = reports.getNCapitalCitiesInRegion("Southern Europe", limit);
+            System.out.println("Report on the top " + limit + " populated capital cities in Southern Europe");
+            displayCapitalCities(getNCapitalCitiesInRegion);
+        }
+        catch (NoSuchElementException e)
+        {
+            ArrayList <CapitalCity> getNCapitalCitiesInRegion = reports.getNCapitalCitiesInRegion("Southern Europe", limit);
+            System.out.println("Report on the top " + limit + " populated capital cities in Southern Europe");
+            displayCapitalCities(getNCapitalCitiesInRegion);
+        }
 
 
         // Produce a report of the top N populated capital cities
-        ArrayList <CapitalCity> getNCapitalCitiesPopulation = reports.getNCapitalCitiesPopulation(5);
-        System.out.println("Report on the top N populated capital cities in the world");
-        displayCapitalCities(getNCapitalCitiesPopulation);
+        Scanner limitPopulatedCapitalCityWorld = new Scanner(System.in);
+        System.out.println("\nPlease input the limit for the most populated capital cities in the world:");
+        //Try - catch to pass GitHub Action
+        try
+        {
+            limit = limitPopulatedCapitalCityWorld.nextInt();
+            if(limit == 0)
+            {
+                limit = 3;
+            }
+            ArrayList <CapitalCity> getNCapitalCitiesPopulation = reports.getNCapitalCitiesPopulation(limit);
+            System.out.println("Report on the top " + limit + " populated capital cities in the world");
+            displayCapitalCities(getNCapitalCitiesPopulation);
+        }
+        catch (NoSuchElementException e)
+        {
+            ArrayList <CapitalCity> getNCapitalCitiesPopulation = reports.getNCapitalCitiesPopulation(limit);
+            System.out.println("Report on the top " + limit + " populated capital cities in the world");
+            displayCapitalCities(getNCapitalCitiesPopulation);
+        }
+
 
         // Produce a report of the top N populated capital cities in a continent
-        ArrayList <CapitalCity> getNCapitalCitiesInContinent = reports.getNCapitalCitiesInContinent("Asia", 5);
-        System.out.println("Report on top N populated capital cities in a continent");
-        displayCapitalCities(getNCapitalCitiesInContinent);
+        Scanner limitPopulatedCapitalCityContinent = new Scanner(System.in);
+        System.out.println("\nPlease input the limit for the most populated capital cities in Asia:");
+        //Try - catch to pass GitHub Action
+        try
+        {
+            limit = limitPopulatedCapitalCityContinent.nextInt();
+            if(limit == 0)
+            {
+                limit = 3;
+            }
+            ArrayList <CapitalCity> getNCapitalCitiesInContinent = reports.getNCapitalCitiesInContinent("Asia", limit);
+            System.out.println("Report on top " + limit + " populated capital cities in a continent");
+            displayCapitalCities(getNCapitalCitiesInContinent);
+        }
+        catch (NoSuchElementException e)
+        {
+            ArrayList <CapitalCity> getNCapitalCitiesInContinent = reports.getNCapitalCitiesInContinent("Asia", limit);
+            System.out.println("Report on top " + limit + " populated capital cities in a continent");
+            displayCapitalCities(getNCapitalCitiesInContinent);
+        }
+
 
         /*
-         *    *********************POPULATION REPORTS*********************
+         *    *********************POPULATION AND REST OF REPORTS*********************
          * @author Pablo Sanchez
          */
-        
         // Call population by continent
         ArrayList<Population> allPopulationsContinent = new ArrayList<>();
         allPopulationsContinent = reports.getPopulationInCityByContinent();
@@ -182,8 +395,6 @@ public class App {
         displayPopulations(allPopulationsContinent, "Continent");
         System.out.println("");
         System.out.println("");
-
-
 
         // Call population by region
         ArrayList<Population> allPopulationsRegion = new ArrayList<>();
