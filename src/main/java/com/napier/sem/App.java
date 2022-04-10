@@ -52,10 +52,15 @@ public class App {
         // Produce a report of top N populated countries in the world
         Scanner limitPopulatedCountriesWorld = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated countries");
-        int n = limitPopulatedCountriesWorld.nextInt();
-        if(n == 0)
+        String nText =  limitPopulatedCountriesWorld.nextLine();
+        int n;
+        if(nText.isEmpty() || nText.equals(null))
         {
             n = 3;
+        }
+        else
+        {
+            n = Integer.parseInt(nText);
         }
         ArrayList<Country> topNInWorld = reports.getTopNCountriesInWorld(n);
         System.out.println("\n\nReport of top " + n + " populated countries in the world");
@@ -64,10 +69,15 @@ public class App {
         // Produce a report of top N populated countries in a continent where N is provided by the user.
         Scanner limitPopulatedC = new Scanner(System.in);
         System.out.println("\nPlease input the limit fot the most populated countries in Europe");
-        int nTopPopCont = limitPopulatedC.nextInt();
-        if(nTopPopCont == 0)
+        String nTopPopContText = limitPopulatedC.nextLine();
+        int nTopPopCont;
+        if(nTopPopContText.isEmpty() || nTopPopContText.equals(null))
         {
             nTopPopCont = 3;
+        }
+        else
+        {
+            nTopPopCont = Integer.parseInt(nTopPopContText);
         }
         String continentTopPop = "Europe";
         ArrayList<Country> topNInContinent = reports.getTopNCountriesInContinent(continentTopPop, nTopPopCont);
@@ -77,10 +87,15 @@ public class App {
         // Produce a report of top N populated countries in a region
         Scanner limitPopulatedCountriesRegion = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated countries in the Baltic Countries");
-        int nTopPopReg = limitPopulatedCountriesRegion.nextInt();
-        if(nTopPopReg == 0)
+        String nTopPopRegText = limitPopulatedCountriesRegion.nextLine();
+        int nTopPopReg;
+        if(nTopPopRegText.isEmpty() || nTopPopRegText.equals(null))
         {
             nTopPopReg = 3;
+        }
+        else
+        {
+            nTopPopReg = Integer.parseInt(nTopPopRegText);
         }
         String regionTopPop = "Baltic Countries";
         ArrayList<Country> topNInRegion = reports.getTopNCountriesInRegion(regionTopPop, nTopPopReg);
