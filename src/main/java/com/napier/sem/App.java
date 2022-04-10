@@ -145,7 +145,7 @@ public class App {
          * @author Pablo Sanchez, Alejandro Vazquez
          */
 
-        ArrayList<City> cityReports = new ArrayList<City>();
+        ArrayList<City> cityReports;
         int limit = 5;
 
         // Produce a report of all the cities in the world organised by largest population to smallest.
@@ -388,7 +388,7 @@ public class App {
          * @author Pablo Sanchez
          */
         // Call population by continent
-        ArrayList<Population> allPopulationsContinent = new ArrayList<>();
+        ArrayList<Population> allPopulationsContinent;
         allPopulationsContinent = reports.getPopulationInCityByContinent();
         System.out.println("\nA report of the population of the people living in cities and outside cities in each continent");
         displayPopulations(allPopulationsContinent, "Continent");
@@ -396,7 +396,7 @@ public class App {
         System.out.println("");
 
         // Call population by region
-        ArrayList<Population> allPopulationsRegion = new ArrayList<>();
+        ArrayList<Population> allPopulationsRegion;
         allPopulationsRegion = reports.getPopulationInCityByRegion();
         System.out.println("\nA report of the population of the people living in cities and outside cities in each region");
         displayPopulations(allPopulationsRegion, "Region");

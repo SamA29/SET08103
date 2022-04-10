@@ -112,7 +112,6 @@ public class PrintReport {
         if (cityList == null || cityList.isEmpty()) {
             System.out.println("No cities to print");
         } else {
-            String h1 = "Name", h2 = "Population";
             // print a header
             System.out.println(String.format("%-25s %-25s", "Name", "Population"));
             // print details of all countries in the list

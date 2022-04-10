@@ -4,7 +4,6 @@ import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static com.napier.sem.PrintReport.*;
 
 class AppTest
@@ -504,7 +503,7 @@ class AppTest
         l.getPercentage();
         l.getPopulation();
         l.toString();
-        Language l2 = new Language( 12, "Swedish",3);
+
     }
     @Test
     void testPopulationConstructor(){

@@ -329,7 +329,7 @@ public class Reports {
         String query = "SELECT city.Name AS 'city', country.Name AS 'country', District, city.Population " +
                 "FROM world.city join world.country on city.CountryCode = country.Code " +
                 "ORDER BY city.Population DESC LIMIT " + c + ";";
-        ArrayList<City> cityList = new ArrayList<City>();
+        ArrayList<City> cityList;
         cityList = processCityQuery(query);
         if(cityList == null)
         {
@@ -358,7 +358,7 @@ public class Reports {
                 "FROM world.city join world.country on city.CountryCode = country.code " +
                 "WHERE country.continent = '" + continent + "' " +
                 "ORDER BY city.Population DESC LIMIT " + c + ";";
-        ArrayList<City> cityList = new ArrayList<City>();
+        ArrayList<City> cityList;
         cityList = processCityQuery(query);
         if(cityList == null)
         {
@@ -387,7 +387,7 @@ public class Reports {
                 "FROM world.city join world.country on city.CountryCode = country.code  " +
                 "WHERE country.Region = '" + region + "' " +
                 "ORDER BY city.Population DESC LIMIT " + c + ";";
-        ArrayList<City> cityList = new ArrayList<City>();
+        ArrayList<City> cityList;
         cityList = processCityQuery(query);
         if(cityList == null)
         {
@@ -416,7 +416,7 @@ public class Reports {
                 "FROM world.city join world.country on city.CountryCode = country.code " +
                 "WHERE country.Name = '" + country + "' " +
                 " ORDER BY city.Population DESC LIMIT " + c + ";";
-        ArrayList<City> cityList = new ArrayList<City>();
+        ArrayList<City> cityList;
         cityList = processCityQuery(query);
         if(cityList == null)
         {
@@ -445,7 +445,7 @@ public class Reports {
                 "FROM world.city join world.country on city.CountryCode = country.Code " +
                 "WHERE city.District = '" + district +
                 "' ORDER BY Population DESC LIMIT " + c + ";";
-        ArrayList<City> cityList = new ArrayList<City>();
+        ArrayList<City> cityList;
         cityList = processCityQuery(query);
         if(cityList == null)
         {
@@ -946,8 +946,6 @@ public class Reports {
      */
     public ResultSet getLanguage() {
         try {
-            ArrayList<Language> output = new ArrayList<>();
-            {
                 // Create string for SQL statement
                 String strSelect =
                         "SELECT la.Language, ROUND(SUM((co.Population * la.Percentage) / 100)) AS 'Population', (((ROUND(SUM((co.Population * la.Percentage) / 100))) * 100) / (SELECT SUM(country.Population) FROM country)) AS 'WorldPercentage' "
@@ -981,7 +979,6 @@ public class Reports {
                     System.out.println("");
                 }
                 return rset;
-            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get language details");

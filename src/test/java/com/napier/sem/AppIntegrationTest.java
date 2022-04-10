@@ -1,10 +1,8 @@
 package com.napier.sem;
 
-import java.util.Scanner;
-import com.mysql.cj.protocol.Resultset;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
