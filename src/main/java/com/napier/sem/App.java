@@ -58,7 +58,7 @@ public class App {
         {
             String nText =  limitPopulatedCountriesWorld.nextLine();
             int n;
-            if(nText.isEmpty() || nText.equals(null))
+            if(nText.isEmpty())
             {
                 n = 3;
             }
@@ -86,7 +86,7 @@ public class App {
         {
             String nTopPopContText = limitPopulatedC.nextLine();
             int nTopPopCont;
-            if(nTopPopContText.isEmpty() || nTopPopContText.equals(null))
+            if(nTopPopContText.isEmpty())
             {
                 nTopPopCont = 3;
             }
@@ -116,7 +116,7 @@ public class App {
         {
             String nTopPopRegText = limitPopulatedCountriesRegion.nextLine();
             int nTopPopReg;
-            if(nTopPopRegText.isEmpty() || nTopPopRegText.equals(null))
+            if(nTopPopRegText.isEmpty())
             {
                 nTopPopReg = 3;
             }
