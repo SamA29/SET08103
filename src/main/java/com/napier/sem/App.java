@@ -2,6 +2,7 @@ package com.napier.sem;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import static com.napier.sem.PrintReport.*;
@@ -52,19 +53,30 @@ public class App {
         // Produce a report of top N populated countries in the world
         Scanner limitPopulatedCountriesWorld = new Scanner(System.in);
         System.out.println("\nPlease input the limit for the most populated countries");
-        String nText =  limitPopulatedCountriesWorld.nextLine();
-        int n;
-        if(nText.isEmpty() || nText.equals(null))
-        {
-            n = 3;
+        try {
+            String nText =  limitPopulatedCountriesWorld.nextLine();
+            int n;
+            if(nText.isEmpty() || nText.equals(null))
+            {
+                n = 3;
+            }
+            else
+            {
+                n = Integer.parseInt(nText);
+            }
+            ArrayList<Country> topNInWorld = reports.getTopNCountriesInWorld(n);
+            System.out.println("\n\nReport of top " + n + " populated countries in the world");
+            displayTopCountries(topNInWorld);
         }
-        else
+        catch(NoSuchElementException e)
         {
-            n = Integer.parseInt(nText);
+            int n = 3;
+            ArrayList<Country> topNInWorld = reports.getTopNCountriesInWorld(n);
+            System.out.println("\n\nReport of top " + n + " populated countries in the world");
+            displayTopCountries(topNInWorld);
         }
-        ArrayList<Country> topNInWorld = reports.getTopNCountriesInWorld(n);
-        System.out.println("\n\nReport of top " + n + " populated countries in the world");
-        displayTopCountries(topNInWorld);
+
+
 
         // Produce a report of top N populated countries in a continent where N is provided by the user.
         Scanner limitPopulatedC = new Scanner(System.in);
