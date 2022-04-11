@@ -20,7 +20,6 @@ public class App {
     public static void main(String[] args) throws SQLException {
 
         Reports reports = new Reports();
-
         // Connect to database
         if(args.length < 1){
             reports.connect("localhost:33060", 30000);
