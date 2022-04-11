@@ -5,11 +5,11 @@ import org.junit.jupiter.api.*;
 import java.util.ArrayList;
 
 import static com.napier.sem.PrintReport.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class AppTest
 {
-
-
     // Tests for display countries (PrintReport)
     ArrayList<Country> countries;
 
@@ -339,11 +339,11 @@ class AppTest
     }
     @Test
     void testGetTopNCountriesInWorldNegative() {
-        a.getTopNCountriesInWorld(-1);
+        assertNull(a.getTopNCountriesInWorld(-1));
     }
     @Test
     void testGetTopNCountriesInWorld0() {
-        a.getTopNCountriesInWorld(0);
+        assertNull(a.getTopNCountriesInWorld(0));
     }
     @Test
     void testGetTopNCountriesInWorldBasic() {
@@ -355,7 +355,7 @@ class AppTest
     }
     @Test
     void testGetAllCountriesInContinentNull() {
-        a.getAllCountriesInContinent(null);
+        assertNull(a.getAllCountriesInContinent("MockContinent"));
     }
     @Test
     void testGetTopNCountriesInContinentBothWrong() {
@@ -367,7 +367,7 @@ class AppTest
     }
     @Test
     void testGetTopNCountriesInContinentWrongCont() {
-        a.getTopNCountriesInContinent(null, 5);
+        assertNull(a.getTopNCountriesInContinent("MockCont", 2));
     }
     @Test
     void testGetTopNCountriesInContinentBasic() {
@@ -379,7 +379,7 @@ class AppTest
     }
     @Test
     void testGetAllCountriesInRegionNull() {
-        a.getAllCountriesInRegion(null);
+        assertNull(a.getAllCountriesInRegion("MockRegion"));
     }
     @Test
     void testGetTopNCountriesInRegionBothWrong() {
@@ -391,7 +391,7 @@ class AppTest
     }
     @Test
     void testGetTopNCountriesInRegionWrongRegion() {
-        a.getTopNCountriesInRegion(null, 4);
+        assertNull(a.getTopNCountriesInRegion("MockReg", 3));
     }
     @Test
     void testGetTopNCountriesInRegionBasic() {
