@@ -759,42 +759,6 @@ public class Reports {
     }
 
     /**
-     * Processes an SQL query to get a list of populations
-     * @param query Query to process
-     * @return  a list of City objects
-     */
-    public ArrayList<Population> processPopulationQuery(String query) {
-        ArrayList<Population> populations = new ArrayList<>();
-        try{
-            // Creates an SQL statement.
-            Statement stmt = con.createStatement();
-            // Sends the SQL statement to the database.
-            ResultSet rset = stmt.executeQuery(query);
-
-            // Indicates which columns on the database align to which attributes within "country".
-            while (rset.next()) {
-                Population popReport = new Population();
-                popReport.setName(rset.getString("country.continent"));
-                popReport.setPopulation(rset.getLong("SUM(DISTINCT country.population)"));
-                double percentCity = Math.round((rset.getLong("SUM(city.population)") * 1D) / rset.getLong("SUM(DISTINCT country.population)") * 100);
-                popReport.setCityPopulationPercent(percentCity);
-                popReport.setCityPopulation(rset.getLong("SUM(city.population)"));
-                long outCity = (rset.getLong("SUM(DISTINCT country.population)") - rset.getLong("SUM(city.population)"));
-                popReport.setNotCityPopulation(outCity);
-                double percentNonCity = Math.round((outCity * 1D) / rset.getLong("SUM(DISTINCT country.population)") * 100);
-                popReport.setNonCityPopulationPercent(percentNonCity);
-                populations.add(popReport);
-            }
-            return populations;
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get population data");
-            return null;
-        }
-    }
-
-    /**
      * Returns a list of Populations of people living in cities in each continent
      * @return   arrayList of Population objects
      */
