@@ -92,18 +92,4 @@ public class Language {
     public void setPercentage(float percentage) {
         this.percentage = percentage;
     }
-
-    // ToString Method
-
-    /**
-     * Returns string representation of class.
-     */
-    @Override
-    public String toString() {
-        return "Language{" +
-                "_population=" + population +
-                ", _language='" + language + '\'' +
-                ", _percentage=" + percentage +
-                '}';
-    }
 }
