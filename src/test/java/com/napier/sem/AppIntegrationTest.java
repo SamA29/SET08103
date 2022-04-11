@@ -110,6 +110,11 @@ public class AppIntegrationTest {
     }
 
     @Test
+    void testGetTopNCountriesInWorldNull() {
+        assertNull(app.getTopNCountriesInWorld(0));
+    }
+
+    @Test
     void testGetTopNCountriesInRegion() {
         ArrayList<Country> top5 = app.getTopNCountriesInRegion("Nordic Countries", 2);
         assertEquals(top5.size(), 2);
@@ -134,13 +139,17 @@ public class AppIntegrationTest {
     }
 
     @Test
+    void testGetAllCountriesInContinentNull() {
+        assertNull(app.getAllCountriesInContinent("MockContinent"));
+    }
+
+    @Test
     void testGetAllCountriesInWorld() {
         ArrayList<Country> top5 = app.getAllCountriesInWorld();
         //assertEquals(top5.size(), 2);
         assertEquals(top5.get(0).getName(), "China");
         assertEquals(top5.get(1).getName(), "India");
     }
-
 
     @Test
     void testGetNCapitalCitiesInRegion() {
