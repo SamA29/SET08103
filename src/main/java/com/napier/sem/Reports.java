@@ -273,7 +273,7 @@ public class Reports {
                 "FROM world.city join world.country on city.CountryCode = country.code " +
                 "WHERE country.continent = '" + continentName + "' " +
                 "ORDER BY Population DESC;";
-        ArrayList < City > cities = processCityQuery(query);
+        ArrayList <City> cities = processCityQuery(query);
         return cities;
     }
 
@@ -287,7 +287,7 @@ public class Reports {
                 "FROM world.city join world.country on city.CountryCode = country.code " +
                 "WHERE country.Region = '" + regionName +
                 "' ORDER BY Population DESC;";
-        ArrayList < City > cities = processCityQuery(query);
+        ArrayList <City> cities = processCityQuery(query);
         return cities;
     }
 
@@ -301,7 +301,7 @@ public class Reports {
                 "FROM world.city join world.country on city.CountryCode = country.code " +
                 "WHERE country.Name = '" + countryName + "' " +
                 "ORDER BY Population DESC;";
-        ArrayList < City > cities = processCityQuery(query);
+        ArrayList <City> cities = processCityQuery(query);
         return cities;
     }
 
@@ -315,7 +315,7 @@ public class Reports {
                 "FROM world.city join world.country on city.CountryCode = country.code " +
                 "WHERE city.District = '" + districtName +
                 "'ORDER BY city.Population DESC;";
-        ArrayList < City > cities = processCityQuery(query);
+        ArrayList <City> cities = processCityQuery(query);
         return cities;
     }
 

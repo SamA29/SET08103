@@ -46,10 +46,10 @@ public class AppIntegrationTest {
 
     @Test
     void testGetNCitiesInWorld() {
-        ArrayList<City> top5 = app.getNCitiesInWorld(2);
-        assertEquals(top5.size(), 2);
-        assertEquals(top5.get(0).getName(), "Mumbai (Bombay)");
-        assertEquals(top5.get(1).getName(), "Seoul");
+        ArrayList<City> top2 = app.getNCitiesInWorld(2);
+        assertEquals(top2.size(), 2);
+        assertEquals(top2.get(0).getName(), "Mumbai (Bombay)");
+        assertEquals(top2.get(1).getName(), "Seoul");
     }
     @Test
     void testGetNCitiesInCountry() {
@@ -77,10 +77,11 @@ public class AppIntegrationTest {
 
     @Test
     void testGetAllCitiesInRegion() {
-        ArrayList<City> top5 = app.getNCitiesInRegion(2, "Middle East");
-        assertEquals(top5.size(), 2);
-        assertEquals(top5.get(0).getName(), "Istanbul");
-        assertEquals(top5.get(1).getName(), "Baghdad");
+        ArrayList<City> cities = app.getAllCitiesInRegion(("Central Africa"));
+        assertEquals(cities.size(), 38);
+        assertEquals(cities.get(0).getName(), "Kinshasa");
+        assertEquals(cities.get(1).getName(), "Luanda");
+        assertEquals(cities.get(2).getName(), "Douala");
     }
 
     @Test
@@ -114,10 +115,11 @@ public class AppIntegrationTest {
 
     @Test
     void testGetAllCitiesInDistrict() {
-        ArrayList<City> top5 = app.getNCitiesInDistrict(2, "Île-de-France");
-        assertEquals(top5.size(), 2);
-        assertEquals(top5.get(0).getName(), "Paris");
-        assertEquals(top5.get(1).getName(), "Boulogne-Billancourt");
+        ArrayList<City> cities = app.getAllCitiesInDistrict("Scotland");
+        assertEquals(cities.size(), 4);
+        assertEquals(cities.get(0).getName(), "Glasgow");
+        assertEquals(cities.get(1).getName(), "Edinburgh");
+        assertEquals(cities.get(2).getName(), "Aberdeen");
     }
     @Test
     void testGetTopNCountriesInContinent() {
@@ -125,6 +127,15 @@ public class AppIntegrationTest {
         assertEquals(top5.size(), 2);
         assertEquals(top5.get(0).getName(), "China");
         assertEquals(top5.get(1).getName(), "India");
+    }
+
+    @Test
+    void testGetAllCitiesInCountry() {
+        ArrayList<City> cities = app.getAllCitiesInCountry("United Kingdom");
+        assertEquals(cities.size(), 81);
+        assertEquals(cities.get(0).getName(), "London");
+        assertEquals(cities.get(1).getName(), "Birmingham");
+        assertEquals(cities.get(2).getName(), "Glasgow");
     }
 
     @Test
