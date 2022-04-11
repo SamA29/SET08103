@@ -334,7 +334,7 @@ public class Reports {
         if(cityList == null)
         {
             System.out.println("Null list");
-            return cityList;
+            return null;
         }
         else if (cityList.isEmpty()) {
             System.out.println("Empty list");
@@ -363,7 +363,7 @@ public class Reports {
         if(cityList == null)
         {
             System.out.println("Null list");
-            return cityList;
+            return null;
         }
         else if (cityList.isEmpty()) {
             System.out.println("Empty list");
@@ -392,11 +392,11 @@ public class Reports {
         if(cityList == null)
         {
             System.out.println("Null list");
-            return cityList;
+            return null;
         }
         else if (cityList.isEmpty()) {
             System.out.println("Empty list");
-            return cityList;
+            return null;
         } else if (cityList.size() < c) {
             System.out.println("\n\n\nNot enough cities in the world for this ranking. Returning as many as there are in world");
         }
@@ -406,7 +406,7 @@ public class Reports {
 
 
     /**
-     * returns a list of N cities on a continent
+     * returns a list of N cities on a country
      * @param  country to search through
      * @param c number of cities to return
      * @return a list of cities objects
@@ -421,7 +421,7 @@ public class Reports {
         if(cityList == null)
         {
             System.out.println("Null list");
-            return cityList;
+            return null;
         }
         else if (cityList.isEmpty()) {
             System.out.println("Empty list");
@@ -450,7 +450,7 @@ public class Reports {
         if(cityList == null)
         {
             System.out.println("Null list");
-            return cityList;
+            return null;
         }
         else if (cityList.isEmpty()) {
             System.out.println("Empty list");

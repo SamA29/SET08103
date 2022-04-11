@@ -39,19 +39,40 @@ public class AppIntegrationTest {
     }
 
     @Test
+    void testGetNCitiesInContinentNull() {
+        assertNull(app.getNCitiesInContinent(0, "MockCont"));
+    }
+
+
+    @Test
     void testGetNCitiesInWorld() {
         ArrayList<City> top5 = app.getNCitiesInWorld(2);
         assertEquals(top5.size(), 2);
         assertEquals(top5.get(0).getName(), "Mumbai (Bombay)");
         assertEquals(top5.get(1).getName(), "Seoul");
     }
-
     @Test
-    void testgetNCitiesInRegion() {
+    void testGetNCitiesInCountry() {
+        ArrayList<City> top2 = app.getNCitiesInCountry(2, "Spain");
+        assertEquals(top2.size(), 2);
+        assertEquals(top2.get(0).getName(), "Madrid");
+        assertEquals(top2.get(1).getName(), "Barcelona");
+    }
+    @Test
+    void testGetNCitiesInCountryNull() {
+        assertNull(app.getNCitiesInCountry(-1, "MockCountry"));
+    }
+    @Test
+    void testGetNCitiesInRegion() {
         ArrayList<City> top5 = app.getNCitiesInRegion(2, "Middle East");
         assertEquals(top5.size(), 2);
         assertEquals(top5.get(0).getName(), "Istanbul");
         assertEquals(top5.get(1).getName(), "Baghdad");
+    }
+
+    @Test
+    void testGetNCitiesInRegionNull() {
+        assertNull(app.getNCitiesInRegion(3, "MockRegion"));
     }
 
     @Test
@@ -87,6 +108,11 @@ public class AppIntegrationTest {
     }
 
     @Test
+    void testGetNCitiesInDistrictNull() {
+        assertNull(app.getNCitiesInDistrict(-1, "MockDis"));
+    }
+
+    @Test
     void testGetAllCitiesInDistrict() {
         ArrayList<City> top5 = app.getNCitiesInDistrict(2, "Île-de-France");
         assertEquals(top5.size(), 2);
@@ -101,6 +127,10 @@ public class AppIntegrationTest {
         assertEquals(top5.get(1).getName(), "India");
     }
 
+    @Test
+    void testGetTopNCountriesInContinentNull() {
+        assertNull(app.getTopNCountriesInContinent("MockCont", 3));
+    }
     @Test
     void testGetTopNCountriesInWorld() {
         ArrayList<Country> top5 = app.getTopNCountriesInWorld(2);
@@ -123,11 +153,20 @@ public class AppIntegrationTest {
     }
 
     @Test
+    void testGetTopNCountriesInRegionNull() {
+        assertNull(app.getTopNCountriesInRegion("MockReg", 4));
+    }
+    @Test
     void testGetAllCountriesInRegion() {
         ArrayList<Country> top5 = app.getAllCountriesInRegion("Nordic Countries");
         //assertEquals(top5.size(), 2);
         assertEquals(top5.get(0).getName(), "Sweden");
         assertEquals(top5.get(1).getName(), "Denmark");
+    }
+
+    @Test
+    void testGetAllCountriesInRegionNull() {
+        assertNull(app.getAllCountriesInRegion("MockRegion"));
     }
 
     @Test
