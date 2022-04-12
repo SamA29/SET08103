@@ -387,7 +387,6 @@ public class App {
          *    *********************POPULATION AND REST OF REPORTS*********************
          * @author Pablo Sanchez
          */
-
         // Call population by country
         ArrayList<Population> allPopulationsCountry;
         allPopulationsCountry = reports.getPopulationInCityByCountry();
