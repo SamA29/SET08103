@@ -367,7 +367,7 @@ public class Reports {
         }
         else if (cityList.isEmpty()) {
             System.out.println("Empty list");
-            return cityList;
+            return null;
         } else if (cityList.size() < c) {
             System.out.println("\n\n\nNot enough cities in the world for this ranking. Returning as many as there are in world");
         }
