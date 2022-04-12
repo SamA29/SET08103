@@ -243,11 +243,11 @@ public class AppIntegrationTest {
         assertEquals(top2.get(0).getName(), "La Habana");
         assertEquals(top2.get(1).getName(), "Santo Domingo de Guzmán");
     }
-    @Test // first
+    @Test
     void testGetPopulationInCityByCountry(){
-        ArrayList<Population> top5 = app.getPopulationInCityByCountry();
-        assertEquals(top5.get(0).getName(), "Afghanistan");
-        assertEquals(top5.get(1).getName(), "Albania");
+        ArrayList<Population> top2 = app.getPopulationInCityByCountry();
+        assertEquals(top2.get(0).getName(), "Afghanistan");
+        assertEquals(top2.get(1).getName(), "Albania");
     }
 
     @Test // second

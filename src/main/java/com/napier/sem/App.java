@@ -11,7 +11,8 @@ import static com.napier.sem.PrintReport.*;
 /**
  *  Created by Group 7: Pablo Sanchez, Alex Vazquez, Sam Alman, Valentina Kerecanina
  *  Main entry point of application
- *  Last Modification: 06/03/2022
+ *  Last Modification: 11/042
+ *  /2022
  */
 public class App {
     /**
@@ -386,6 +387,16 @@ public class App {
          *    *********************POPULATION AND REST OF REPORTS*********************
          * @author Pablo Sanchez
          */
+
+        // Call population by country
+        ArrayList<Population> allPopulationsCountry;
+        allPopulationsCountry = reports.getPopulationInCityByCountry();
+        System.out.println("\nA report of the population of the people living in cities and outside cities in each country");
+        displayPopulations(allPopulationsCountry, "Country");
+        System.out.println("");
+        System.out.println("");
+
+
         // Call population by continent
         ArrayList<Population> allPopulationsContinent;
         allPopulationsContinent = reports.getPopulationInCityByContinent();
