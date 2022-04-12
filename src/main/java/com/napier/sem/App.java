@@ -392,25 +392,21 @@ public class App {
         allPopulationsCountry = reports.getPopulationInCityByCountry();
         System.out.println("\nA report of the population of the people living in cities and outside cities in each country");
         displayPopulations(allPopulationsCountry, "Country");
-        System.out.println("");
-        System.out.println("");
-
+        System.out.println("\n");
 
         // Call population by continent
         ArrayList<Population> allPopulationsContinent;
         allPopulationsContinent = reports.getPopulationInCityByContinent();
         System.out.println("\nA report of the population of the people living in cities and outside cities in each continent");
         displayPopulations(allPopulationsContinent, "Continent");
-        System.out.println("");
-        System.out.println("");
+        System.out.println("\n");
 
         // Call population by region
         ArrayList<Population> allPopulationsRegion;
         allPopulationsRegion = reports.getPopulationInCityByRegion();
         System.out.println("\nA report of the population of the people living in cities and outside cities in each region");
         displayPopulations(allPopulationsRegion, "Region");
-        System.out.println("");
-        System.out.println("");
+        System.out.println("\n");
 
         // Call the language query
         reports.getLanguage();
