@@ -408,6 +408,39 @@ public class App {
         displayPopulations(allPopulationsRegion, "Region");
         System.out.println("\n");
 
+        // Call the population queries and print their results
+        // Report population of City
+        ArrayList<City> allPopulations;
+        allPopulations = reports.getCityPopulation("Madrid");
+        printCityPopulation(allPopulations);
+
+        // Report population of District
+        Population populationDistrict;
+        populationDistrict = reports.getPopulationDistrict("Île-de-France");
+        printDistrictPopulation(populationDistrict);
+
+        // Report population of Region
+        ArrayList<Population> populationRegion;
+        populationRegion = reports.getRegionPopulation("Middle East");
+        printRegionPopulation(populationRegion);
+
+        // Report population of Continent
+        Population populationContinent;
+        populationContinent = reports.getContinentPopulation("Europe");
+        printContinentPopulation(populationContinent);
+
+        // Report population of Country
+        Country populationCountry;
+        populationCountry = reports.getCountryPopulation("Canada");
+        printCountryPopulation(populationCountry);
+
+        System.out.println("\n");
+
+        // Report population of the World
+        long worldPopulation = reports.getWorldPopulation();
+        System.out.println("The total world population is: ");
+        System.out.println(worldPopulation);
+
         // Call the language query
         reports.getLanguage();
 
@@ -415,6 +448,4 @@ public class App {
         reports.disconnect();
 
     }
-
-
 }

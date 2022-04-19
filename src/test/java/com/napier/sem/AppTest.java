@@ -492,6 +492,26 @@ class AppTest
         a.getPopulationInCityByRegion();
     }
     @Test
+    void getTestCityPopulation(){
+        a.getCityPopulation("Madrid");
+    }
+    @Test
+    void getTestDistrictPopulation(){
+        a.getPopulationDistrict("Katsina");
+    }
+    @Test
+    void getTestContinentPopulation(){
+        a.getContinentPopulation("Europe");
+    }
+    @Test
+    void getTestCountryPopulation(){
+        a.getCountryPopulation("Spain");
+    }
+    @Test
+    void getTestWorldPopulation(){
+        a.getWorldPopulation();
+    }
+    @Test
     void testLanguageConstructor(){
         Language l = new Language();
         l.setLanguage("Russian");

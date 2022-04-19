@@ -250,7 +250,7 @@ public class AppIntegrationTest {
         assertEquals(top2.get(1).getName(), "Albania");
     }
 
-    @Test // second
+    @Test
     void testGetPopulationInCityByRegion(){
         ArrayList<Population> top5 = app.getPopulationInCityByRegion();
         assertEquals(top5.get(0).getName(), "Australia and New Zealand");
@@ -263,12 +263,12 @@ public class AppIntegrationTest {
         assertEquals(top5.get(1).toString(), "Baltic Countries 7561900 2947140 39.0% 4614760 61.0% \n");
         assertEquals(top5.get(1).getName(), "Baltic Countries");
     }
-    @Test // third
+    @Test
     void testGetLanguage(){
         ResultSet rset = app.getLanguage();
         assertNotNull(rset);
     }
-    @Test //fourth
+    @Test
     void testGetPopulationInCityByContinent(){
         ArrayList<Population> output =  app.getPopulationInCityByContinent();
 
@@ -285,8 +285,26 @@ public class AppIntegrationTest {
         assertEquals(l.getLanguage(), "Chinese");
         assertEquals(l.getPopulation(), 100000);
         assertEquals(l.getPercentage(), 10);
-        assertEquals(n.getLanguage(), null);
+        assertNull(n.getLanguage());
         assertEquals(n.getPopulation(), 0);
         assertEquals(n.getPercentage(), 0);
+    }
+    @Test
+    void testGetCityPopulationNull(){
+        assertNull(app.getCityPopulation(null));
+    }
+    @Test
+    void testGetCityPopulation(){
+        ArrayList<City> output =  app.getCityPopulation("Madrid");
+        assertEquals(output.get(0).getPopulation(), 2879052);
+    }
+    @Test
+    void testGetDistrictPopulationNull(){
+        assertNull(app.getPopulationDistrict(null));
+    }
+    @Test
+    void testGetDistrictPopulation(){
+        Population output =  app.getPopulationDistrict("Île-de-France");
+        assertEquals(output.getPopulation(), 2416248);
     }
 }

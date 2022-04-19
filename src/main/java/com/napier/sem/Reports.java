@@ -949,4 +949,231 @@ public class Reports {
             return null;
         }
     }
+
+    /**
+     * Gets population of a City
+     * @param name
+     * @return list of cities
+     */
+    public ArrayList<City> getCityPopulation(String name)
+    {
+        if (name != null && !name.isEmpty()) {
+            try {
+                Statement stmt = con.createStatement();
+                String query =
+                        "SELECT city.ID, city.Name, city.Population "
+                                + "FROM city "
+                                + "WHERE city.Name LIKE ? ";
+
+                PreparedStatement preparedStatement = con.prepareStatement(query);
+                preparedStatement.setString(1, name);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                ArrayList<City> cities = new ArrayList<City>();
+
+                while (resultSet.next()) {
+                    City city = new City();
+                    city.setName(resultSet.getString("city.Name"));
+                    city.setPopulation(resultSet.getInt("city.Population"));
+                    cities.add(city);
+                }
+                return cities;
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println("Failed to get city population");
+            }
+        }
+        return null;
+    }
+
+
+    /**
+     * Gets population of a district
+     * @param name
+     * @return
+     */
+    public Population getPopulationDistrict(String name) {
+        if (name != null && !name.isEmpty()) {
+            try {
+                Statement stmt = con.createStatement();
+                String query =
+                        "SELECT district, SUM(population) as population "
+                                + "FROM city "
+                                + "WHERE district LIKE ? "
+                                + "GROUP BY district";
+
+                PreparedStatement preparedStatement = con.prepareStatement(query);
+                preparedStatement.setString(1, name);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+                    Population district = new Population();
+                    district.setName(resultSet.getString("district"));
+                    district.setPopulation(resultSet.getLong("population"));
+                    return district;
+                } else {
+                    throw new Exception("No district found");
+                }
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println("Failed to get district population");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Gets region population sorted.
+     * @param region
+     * @return
+     */
+    public ArrayList<Population> getRegionPopulation(String region) {
+        if (region == null) {
+            throw new IllegalArgumentException("You cannot pass null value as a region.");
+        }
+
+        ArrayList<Population> result = new ArrayList<>();
+        try (Statement statement = con.createStatement()) {
+            statement.executeQuery("use world;");
+            String query = "SELECT * " +
+                    "FROM country " +
+                    "WHERE region = ?" +
+                    "ORDER BY population " +
+                    "ASC;";
+
+            PreparedStatement preparedStatement = con.prepareStatement(query);
+            preparedStatement.setString(1, region);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            int popp=0;
+
+            while (resultSet.next()) {
+                int population = resultSet.getInt("population");
+                Population pop = new Population();
+                popp += population;
+                pop.setName(region);
+                pop.setPopulation(popp);
+
+                result.add(pop);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets population of a continent
+     * @param name
+     * @return
+     */
+    public Population getContinentPopulation(String name)
+    {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Continent is null or empty");
+        } else {
+            try {
+                Statement stmt = con.createStatement();
+                String query =
+                        "SELECT continent, SUM(population) as population "
+                                + "FROM country "
+                                + "WHERE continent LIKE ? "
+                                + "GROUP BY continent";
+
+                PreparedStatement preparedStatement = con.prepareStatement(query);
+                preparedStatement.setString(1, name);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                if(resultSet.next()) {
+                    Population continent = new Population();
+                    continent.setName(resultSet.getString("continent"));
+                    continent.setPopulation(resultSet.getLong("population"));
+                    return continent;
+                } else {
+                    throw new IllegalArgumentException("Continent not found");
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println("Failed to get continent population");
+            }
+            return null;
+        }
+    }
+
+    /**
+     * Get a population of a country
+     * @param name
+     * @return
+     */
+    public Country getCountryPopulation(String name)
+    {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Country name is null or empty");
+        }
+        else {
+            try {
+                Statement stmt = con.createStatement();
+                String query =
+                        "SELECT country.Name, country.Population "
+                                + "FROM country "
+                                + "WHERE country.Name LIKE ? ";
+
+                PreparedStatement preparedStatement = con.prepareStatement(query);
+                preparedStatement.setString(1, name);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                Country result = new Country();
+
+                while(resultSet.next()) {
+                    result.setName(resultSet.getString("country.Name"));
+                    result.setPopulation(resultSet.getInt("country.Population"));
+                    return result;
+                }
+
+            }
+            catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println("Failed to get country population");
+            }
+            return null;
+        }
+    }
+
+    /**
+     * Method to get a population of a country
+     * @return long
+     */
+    public long getWorldPopulation()
+    {
+        try {
+            Statement stmt = con.createStatement();
+            String query =
+                    "SELECT SUM(country.Population) AS Population "
+                            + "FROM country ";
+
+            PreparedStatement preparedStatement = con.prepareStatement(query);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            long result = -1;
+
+            while(resultSet.next())
+            {
+                result = resultSet.getLong("Population");
+            }
+            return result;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country population");
+        }
+        return 0;
+    }
 }
