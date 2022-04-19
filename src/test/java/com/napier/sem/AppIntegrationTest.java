@@ -307,4 +307,34 @@ public class AppIntegrationTest {
         Population output =  app.getPopulationDistrict("Île-de-France");
         assertEquals(output.getPopulation(), 2416248);
     }
+    @Test
+    void testGetRegionPopulationNull(){
+        assertNull(app.getRegionPopulation(null));
+    }
+    @Test
+    void testGetRegionPopulation(){
+        ArrayList<Population> output =  app.getRegionPopulation("Île-de-France");
+    }
+    @Test
+    void testGetContinentPopulationNull(){
+        assertNull(app.getContinentPopulation(null));
+    }
+    @Test
+    void testGetContinentPopulation(){
+        Population output =  app.getContinentPopulation("Europe");
+        assertEquals(output.getPopulation(), 730074600);
+    }
+    @Test
+    void testGetCountryPopulationNull(){
+        assertNull(app.getCountryPopulation(null));
+    }
+    @Test
+    void testGetCountryPopulation(){
+        Country output =  app.getCountryPopulation("Spain");
+        assertEquals(output.getPopulation(), 39441700);
+    }
+    @Test
+    void testGetWorldPopulation(){
+        assertEquals(app.getWorldPopulation(), 6078749450.00);
+    }
 }

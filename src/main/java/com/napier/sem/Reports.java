@@ -1033,9 +1033,8 @@ public class Reports {
      */
     public ArrayList<Population> getRegionPopulation(String region) {
         if (region == null) {
-            throw new IllegalArgumentException("You cannot pass null value as a region.");
+            return null;
         }
-
         ArrayList<Population> result = new ArrayList<>();
         try (Statement statement = con.createStatement()) {
             statement.executeQuery("use world;");
@@ -1074,9 +1073,7 @@ public class Reports {
      */
     public Population getContinentPopulation(String name)
     {
-        if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("Continent is null or empty");
-        } else {
+        if (name != null && !name.isEmpty()) {
             try {
                 Statement stmt = con.createStatement();
                 String query =
@@ -1090,7 +1087,7 @@ public class Reports {
 
                 ResultSet resultSet = preparedStatement.executeQuery();
 
-                if(resultSet.next()) {
+                if (resultSet.next()) {
                     Population continent = new Population();
                     continent.setName(resultSet.getString("continent"));
                     continent.setPopulation(resultSet.getLong("population"));
@@ -1102,8 +1099,8 @@ public class Reports {
                 System.out.println(e.getMessage());
                 System.out.println("Failed to get continent population");
             }
-            return null;
         }
+        return null;
     }
 
     /**
@@ -1113,10 +1110,7 @@ public class Reports {
      */
     public Country getCountryPopulation(String name)
     {
-        if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("Country name is null or empty");
-        }
-        else {
+        if (name != null && !name.isEmpty()) {
             try {
                 Statement stmt = con.createStatement();
                 String query =
@@ -1131,19 +1125,18 @@ public class Reports {
 
                 Country result = new Country();
 
-                while(resultSet.next()) {
+                while (resultSet.next()) {
                     result.setName(resultSet.getString("country.Name"));
                     result.setPopulation(resultSet.getInt("country.Population"));
                     return result;
                 }
 
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
                 System.out.println("Failed to get country population");
             }
-            return null;
         }
+        return null;
     }
 
     /**
