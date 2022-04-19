@@ -16,7 +16,6 @@ public class CapitalCity {
 
     public void setName(String Name) { this.Name = Name;}
 
-
     public void setCountryCode(String CountryCode) {this.CountryCode = CountryCode;}
 
     public void setDistrict(String District) {this.District = District;}

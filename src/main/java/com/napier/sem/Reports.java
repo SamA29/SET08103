@@ -249,7 +249,6 @@ public class Reports {
      * @author Pablo Sanchez, Alejandro Vazquez
      */
 
-
     /**
      * returns a list of cities in the world
      * @return a list of cities objects
