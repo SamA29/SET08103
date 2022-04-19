@@ -30,9 +30,7 @@ public class City {
      * Constructor for the city
      */
     public City()
-    {
-
-    }
+    {}
 
     /**
      * Gets the city name
