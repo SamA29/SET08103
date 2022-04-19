@@ -5,7 +5,6 @@ import org.junit.jupiter.api.*;
 import java.util.ArrayList;
 
 import static com.napier.sem.PrintReport.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AppTest
 {
