@@ -96,6 +96,10 @@ public class City {
         this.population = population;
     }
 
+    /**
+     * Sets the city ID
+     * @param id to set
+     */
     public void setId(int id) {
         this.id = id;
     }

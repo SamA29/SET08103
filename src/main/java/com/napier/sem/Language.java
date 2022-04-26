@@ -67,7 +67,7 @@ public class Language {
     // Setters
 
     /**
-     * Sets private population property
+     * Sets public population property
      *
      * @param population population of speakers
      */
@@ -76,7 +76,7 @@ public class Language {
     }
 
     /**
-     * Sets private language property
+     * Sets public language property
      *
      * @param language language name
      */
@@ -85,7 +85,7 @@ public class Language {
     }
 
     /**
-     * Sets private population property
+     * Sets public population property
      *
      * @param percentage percentage of world population
      */
