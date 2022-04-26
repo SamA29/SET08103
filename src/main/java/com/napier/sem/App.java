@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 import static com.napier.sem.PrintReport.*;
 
-
 /**
  *  Created by Group 7: Pablo Sanchez, Alex Vazquez, Sam Alman, Valentina Kerecanina
  *  Main entry point of application
