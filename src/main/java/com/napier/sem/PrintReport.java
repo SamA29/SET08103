@@ -188,7 +188,7 @@ public class PrintReport {
             return;
         } else {
             // Print header
-            System.out.println("Population of cities called: ");
+            System.out.println("Population of cities: ");
             for (City c : cities) {
                 if (c == null) {
                     continue;
@@ -250,7 +250,7 @@ public class PrintReport {
         {
             // Print header
             Population output;
-            System.out.println("Population of region called: ");
+            System.out.println("Population of region: ");
             output = population.get(population.size()-1);
 
             String c_string = output.getName() + " " + output.getPopulation();
@@ -271,7 +271,7 @@ public class PrintReport {
             return;
         } else
         {
-            System.out.println("Population district: ");
+            System.out.println("Population of district: ");
             System.out.println(population.getName() + " - " + population.getPopulation());
             System.out.println("\n");
         }

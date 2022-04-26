@@ -11,8 +11,7 @@ import static com.napier.sem.PrintReport.*;
 /**
  *  Created by Group 7: Pablo Sanchez, Alex Vazquez, Sam Alman, Valentina Kerecanina
  *  Main entry point of application
- *  Last Modification: 11/042
- *  /2022
+ *  Last Modification: 21/04/2022
  */
 public class App {
     /**
@@ -153,10 +152,10 @@ public class App {
         System.out.println("\n\nReport of all the cities in the world organised by largest population to smallest.");
         displayCities(cityReports);
 
-        String continentName = "Africa";
+        String continentName = "Europe";
         // Produce a report of all the cities in a continent organised by largest population to smallest.
         cityReports = reports.getAllCitiesInContinent(continentName);
-        System.out.println("\n\nReport of all the cities on the continent "+ continentName +" organised by largest population to smallest.");
+        System.out.println("\n\nReport of all the cities on "+ continentName +" organised by largest population to smallest.");
         displayCities(cityReports);
 
         String regionName = "Middle East";
@@ -165,10 +164,10 @@ public class App {
         System.out.println("\n\nReport of all the cities in the region " + regionName+ " organised by largest population to smallest.");
         displayCities(cityReports);
 
-        String countryName = "France";
+        String countryName = "Spain";
         // Produce a report of all the cities in a country organised by largest population to smallest.
         cityReports = reports.getAllCitiesInCountry(countryName);
-        System.out.println("\n\nReport of all the cities in a country " + countryName+ " organised by largest population to smallest.");
+        System.out.println("\n\nReport of all the cities in3 " + countryName+ " organised by largest population to smallest.");
         displayCities(cityReports);
 
         String districtName = "Île-de-France";
@@ -202,7 +201,7 @@ public class App {
 
         // Produce a report of the top N populated cities in the continent where N is provided by the user where N is provided by the user.
         Scanner limitPopulatedCityContinent = new Scanner(System.in);
-        System.out.println("\nPlease input the limit for the most populated cities in Africa:");
+        System.out.println("\nPlease input the limit for the most populated cities in Europe:");
         //Try - catch to pass GitHub Action
         try
         {
@@ -247,7 +246,7 @@ public class App {
 
         // Produce a report of the top N populated cities in the country where N is provided by the user where N is provided by the user.
         Scanner limitPopulatedCityCountry = new Scanner(System.in);
-        System.out.println("\nPlease input the limit for the most populated cities in France:");
+        System.out.println("\nPlease input the limit for the most populated cities in Spain:");
         //Try - catch to pass GitHub Action
         try
         {
@@ -304,13 +303,13 @@ public class App {
 
         String continentCapCity = "Europe";
         //Produce a report of the capital cities in a continent organised by largest population to smallest
-        System.out.println("\n\nReport of all capital cities in a continent organised by largest population to smallest");
+        System.out.println("\n\nReport of all capital cities in Europe organised by largest population to smallest");
         cityReports = reports.getAllCapitalCitiesInContinent(continentCapCity);
         reports.displayCapitals(cityReports);
 
         String regionCapCity = "Middle East";
         //Produce a report of the capital cities in a region organised by largest to smallest.
-        System.out.println("\n\nReport of all capital cities in a region organised by largest to smallest.");
+        System.out.println("\n\nReport of all capital cities in Middle East organised by largest to smallest.");
         cityReports = reports.getAllCapitalCitiesInRegion(regionCapCity);
         reports.displayCapitals(cityReports);
 
@@ -438,7 +437,7 @@ public class App {
 
         // Report population of the World
         long worldPopulation = reports.getWorldPopulation();
-        System.out.println("The total world population is: ");
+        System.out.println("World Population: ");
         System.out.println(worldPopulation);
 
         // Call the language query
