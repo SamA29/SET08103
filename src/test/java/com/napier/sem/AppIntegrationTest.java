@@ -8,7 +8,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ *  Integration Tests for Application
+ *  
+ */
 public class AppIntegrationTest {
     static Reports app;
 
