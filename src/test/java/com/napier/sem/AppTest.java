@@ -11,6 +11,9 @@ class AppTest
     // Tests for display countries (PrintReport)
     ArrayList<Country> countries;
 
+    /**
+     * Test for displaying a Country's attributes
+     */
     @Test
     void displayCountriesBasic() {
         countries = new ArrayList<>();
@@ -25,17 +28,26 @@ class AppTest
         displayCountries(countries);
     }
 
+    /**
+     * Test for displaying a Country's attributes when input is null
+     */
     @Test
     void displayCountriesTestNull() {
         displayCountries(null);
     }
 
+    /**
+     * Test for displaying a Country's attributes when empty
+     */
     @Test
     void displayCountriesTestEmpty() {
         countries = new ArrayList<>();
         displayCountries(countries);
     }
 
+    /**
+     * Test for displaying a Country's attributes when country is null
+     */
     @Test
     void displayCountriesContainsNull() {
         countries = new ArrayList<>();
@@ -46,6 +58,9 @@ class AppTest
     // Tests for display Top countries (PrintReport)
 
 
+    /**
+     * Test for displaying top Country's attributes
+     */
     @Test
     void displayTopCountriesBasic() {
         countries = new ArrayList<>();
@@ -56,17 +71,26 @@ class AppTest
         displayTopCountries(countries);
     }
 
+    /**
+     * Test for displaying top Country's attributes when input is null
+     */
     @Test
     void displayTopCountriesTestNull() {
         displayTopCountries(null);
     }
 
+    /**
+     * Test for displaying top Country's attributes when empty
+     */
     @Test
     void displayTopCountriesTestEmpty() {
         countries = new ArrayList<>();
         displayTopCountries(countries);
     }
 
+    /**
+     * Test for displaying top Country's attributes when country is null
+     */
     @Test
     void displayTopCountriesContainsNull() {
         countries = new ArrayList<>();
@@ -77,6 +101,9 @@ class AppTest
 
     //Tests for display Cities (PrintReport)
 
+    /**
+     * Test for displaying a City's attributes
+     */
     @Test
     void displayCitiesTestStandard() {
         cities = new ArrayList < > ();
@@ -89,17 +116,26 @@ class AppTest
         displayCities(cities);
     }
 
+    /**
+     * Test for displaying a City's attributes when input is null
+     */
     @Test
     void displayCitiesTestNullSet() {
         displayCountries(null);
     }
 
+    /**
+     * Test for displaying a City's attributes when empty
+     */
     @Test
     void displayCitiesTestEmptySet() {
         cities = new ArrayList <> ();
         displayCities(cities);
     }
 
+    /**
+     * Test for displaying a City's attributes when city is null
+     */
     @Test
     void displayCitiesTestSetContainsNull() {
         cities = new ArrayList <> ();
@@ -110,6 +146,9 @@ class AppTest
 
     // Tests for display Top Cities (PrintReport)
 
+    /**
+     * Test for displaying top City's attributes
+     */
     @Test
     void displayTopCitiesTestStandard() {
         cities = new ArrayList <> ();
@@ -121,6 +160,10 @@ class AppTest
         cities.add(city);
         displayTopCountries(countries);
     }
+
+    /**
+     * Test for displaying top City's attributes when city is null
+     */
     @Test
     void displayTopCitiesTestContainsNull() {
         cities = new ArrayList <City> ();
@@ -128,11 +171,18 @@ class AppTest
         displayTopCountries(countries);
     }
 
+    /**
+     * Test for displaying top City's attributes when empty
+     */
     @Test
     void displayTopCitiesTestEmptySet() {
         cities = new ArrayList <> ();
         displayTopCities(cities);
     }
+
+    /**
+     * Test for displaying top City's attributes when input is null
+     */
     @Test
     void displayTopCitiesTestNull() {
         displayTopCountries(null);
@@ -144,60 +194,98 @@ class AppTest
     ArrayList <City> cities;
     Reports a = new Reports();
 
+    /**
+     * Test for getting all Cities in a non-existent Continent
+     */
     @Test
     void getAllCitiesInContinentTestFalse() {
         cities = new ArrayList<>();
         String continent = "Foo";
         cities = a.getAllCitiesInContinent(continent);
     }
+
+    /**
+     * Test for getting all Cities in a Continent
+     */
     @Test
     void getAllCitiesInContinentTestTrue() {
         cities = new ArrayList<>();
         String continent = "Africa";
         cities = a.getAllCitiesInContinent(continent);
     }
+
+    /**
+     * Test for getting all Cities in a non-existent District
+     */
     @Test
     void getAllCitiesInDistrictTestFalse() {
         cities = new ArrayList<>();
         String district = "Foo";
         cities = a.getAllCitiesInDistrict(district);
     }
+
+    /**
+     * Test for getting all Cities in a District
+     */
     @Test
     void getAllCitiesInDistrictTestTrue() {
         cities = new ArrayList<>();
         String district = "Bretagne";
         cities = a.getAllCitiesInDistrict(district);
     }
+
+    /**
+     * Test for getting all Cities in a non-existent Country
+     */
     @Test
     void getAllCitiesInCountryTestFalse() {
         cities = new ArrayList<>();
         String country = "Foo";
         cities = a.getAllCitiesInCountry(country);
     }
+
+    /**
+     * Test for getting all Cities in a Country
+     */
     @Test
     void getAllCitiesInCountryTestTrue() {
         cities = new ArrayList<>();
         String country = "Spain";
         cities = a.getAllCitiesInCountry(country);
     }
+
+    /**
+     * Test for getting all Cities in a non-existent Region
+     */
     @Test
     void getAllCitiesInRegionTestFalse() {
         cities = new ArrayList<>();
         String region = "Foo";
         cities = a.getAllCitiesInRegion(region);
     }
+
+    /**
+     * Test for getting all Cities in a Region
+     */
     @Test
     void getAllCitiesInRegionTestTrue() {
         cities = new ArrayList<>();
         String region = "Middle East";
         cities = a.getAllCitiesInRegion(region);
     }
+
+    /**
+     * Test for getting all Cities in the World
+     */
     @Test
     void getAllCitiesInWorldTestTrue() {
         cities = new ArrayList<>();
         cities = a.getAllCitiesInWorld();
     }
 
+    /**
+     * Test for top user provided (N) amount Cities in the world if input is big
+     */
     @Test
     void topNCitiesInWorldBigNumber(){
         cities = new ArrayList<>();
@@ -206,6 +294,10 @@ class AppTest
         // assertEquals(cities, null);
 
     }
+
+    /**
+     * Test for top user provided (N) amount Cities in the world if input is small
+     */
     @Test
     void topNCitiesInWorldSmallNumber(){
         cities = new ArrayList<>();
@@ -214,6 +306,10 @@ class AppTest
 
 
     }
+
+    /**
+     * Test for top user provided (N) amount Cities in the world if input is 0
+     */
     @Test
     void topNCitiesInWorldNull(){
         cities = new ArrayList<>();
@@ -222,12 +318,20 @@ class AppTest
 
     }
     @Test
+
+    /**
+     * Test for top user provided (N) amount Cities in the world if input is normal
+     */
     void topNCitiesInWorldNormal(){
         cities = new ArrayList<>();
         int pass = 5;
         cities = a.getNCitiesInWorld(pass);
 
     }
+
+    /**
+     * Test for top user provided (N) amount Cities in a District if input is big
+     */
     @Test
     void topNCitiesInDistrictBigNumber(){
         cities = new ArrayList<>();
@@ -235,6 +339,10 @@ class AppTest
         cities =  a.getNCitiesInDistrict(pass, "");
 
     }
+
+    /**
+     * Test for top user provided (N) amount Cities in a District if input is small
+     */
     @Test
     void topNCitiesInDistrictSmallNumber(){
         cities = new ArrayList<>();
@@ -242,6 +350,10 @@ class AppTest
         cities = a.getNCitiesInDistrict(pass, "");
 
     }
+
+    /**
+     * Test for top user provided (N) amount Cities in a District if input is 0
+     */
     @Test
     void topNCitiesInDistrictNull(){
         cities = new ArrayList<>();
@@ -249,6 +361,10 @@ class AppTest
         cities = a.getNCitiesInDistrict(pass, "");
 
     }
+
+    /**
+     * Test for top user provided (N) amount Cities in a District if input is normal
+     */
     @Test
     void topNCitiesInDistrictNormal(){
         cities = new ArrayList<>();
@@ -256,6 +372,10 @@ class AppTest
         cities = a.getNCitiesInDistrict(pass, "");
 
     }
+
+    /**
+     * Test for top user provided (N) amount Cities in a Region if input is big
+     */
     @Test
     void topNCitiesInRegionBigNumber(){
         cities = new ArrayList<>();
@@ -263,6 +383,10 @@ class AppTest
         cities =  a.getNCitiesInRegion(pass, "");
 
     }
+
+    /**
+     * Test for top user provided (N) amount Cities in a Region if input is small
+     */
     @Test
     void topNCitiesInRegionSmallNumber(){
         cities = new ArrayList<>();
@@ -270,6 +394,10 @@ class AppTest
         cities = a.getNCitiesInRegion(pass, "");
 
     }
+
+    /**
+     * Test for top user provided (N) amount Cities in a Region if input is 0
+     */
     @Test
     void topNCitiesInRegionNull(){
         cities = new ArrayList<>();
@@ -277,6 +405,10 @@ class AppTest
         cities = a.getNCitiesInRegion(pass, "");
 
     }
+
+    /**
+     * Test for top user provided (N) amount Cities in a Region if input is normal
+     */
     @Test
     void topNCitiesInRegionNormal(){
         cities = new ArrayList<>();
@@ -284,6 +416,10 @@ class AppTest
         cities = a.getNCitiesInRegion(pass, "");
 
     }
+
+    /**
+     * Test for top user provided (N) amount Cities in a Country if input is big
+     */
     @Test
     void topNCitiesInCountryBigNumber(){
         cities = new ArrayList<>();
@@ -291,6 +427,10 @@ class AppTest
         cities = a.getNCitiesInCountry(pass, "");
 
     }
+
+    /**
+     * Test for top user provided (N) amount Cities in a Country if input is small
+     */
     @Test
     void topNCitiesInCountrySmallNumber(){
         cities = new ArrayList<>();
@@ -298,6 +438,10 @@ class AppTest
         cities = a.getNCitiesInCountry(pass, "");
 
     }
+
+    /**
+     * Test for top user provided (N) amount Cities in a Country if input is 0
+     */
     @Test
     void topNCitiesInCountryNull(){
         cities = new ArrayList<>();
@@ -305,12 +449,18 @@ class AppTest
         cities = a.getNCitiesInCountry(pass, "");
 
     }
+
+    /**
+     * Test for top user provided (N) amount Cities in a Country if input is normal
+     */
     @Test
     void topNCitiesInCountryNormal(){
         cities = new ArrayList<>();
         int pass = 5;
         cities = a.getNCitiesInCountry(pass, "");
     }
+
+
     @Test
     void testProcessCityQueryNull() {
         a.processCityQuery(null);
@@ -330,128 +480,250 @@ class AppTest
         a.processCountryQuery("query");
     }
 
+    /**
+     * Test for getting all Countries in the World
+     */
     @Test
     void testGetAllCountriesInWorld() {
         a.getAllCountriesInWorld();
     }
+
+    /**
+     * Test for getting top user provided (N) amount Countries in the World if input is Null
+     */
     @Test
     void testGetTopNCountriesInWorldNegative() {
         a.getTopNCountriesInWorld(-1);
     }
+
+    /**
+     * Test for getting top user provided (N) amount Countries in the World if input is 0
+     */
     @Test
     void testGetTopNCountriesInWorld0() {
         a.getTopNCountriesInWorld(0);
     }
+
+    /**
+     * Test for getting top user provided (N) amount Countries in the World if input is normal
+     */
     @Test
     void testGetTopNCountriesInWorldBasic() {
         a.getTopNCountriesInWorld(5);
     }
+
+    /**
+     * Test for getting all Countries in Continent
+     */
     @Test
     void testGetAllCountriesInContinentBasic() {
         a.getAllCountriesInContinent("Africa");
     }
+
+    /**
+     * Test for getting all Countries in Continent if input is null
+     */
     @Test
     void testGetAllCountriesInContinentNull() {
         a.getAllCountriesInContinent(null);
     }
+
+    /**
+     * Test for getting top user provided (N) amount Countries in Continent if input is null
+     */
     @Test
     void testGetTopNCountriesInContinentBothWrong() {
         a.getTopNCountriesInContinent(null, 0);
     }
+
+    /**
+     * Test for getting top user provided (N) amount Countries in Continent if input is normal
+     */
     @Test
     void testGetTopNCountriesInContinentWrongLimit() {
         a.getTopNCountriesInContinent("Africa", -1);
     }
+
+    /**
+     * Test for getting top user provided (N) amount Countries in Continent if input is null
+     */
     @Test
     void testGetTopNCountriesInContinentWrongCont() {
         a.getTopNCountriesInContinent(null, 5);
     }
+
+    /**
+     * Test for getting top user provided (N) amount Countries in Continent if input is normal
+     */
     @Test
     void testGetTopNCountriesInContinentBasic() {
         a.getTopNCountriesInContinent("Africa", 5);
     }
+
+    /**
+     * Test for getting all Countries in Region if input is normal
+     */
     @Test
     void testGetAllCountriesInRegionBasic() {
         a.getAllCountriesInRegion("Baltic Countries");
     }
+
+    /**
+     * Test for getting all Countries in Region if input is null
+     */
     @Test
     void testGetAllCountriesInRegionNull() {
         a.getAllCountriesInRegion(null);
     }
+
+    /**
+     * Test for getting top user provided (N) amount Countries in Region if input is null
+     */
     @Test
     void testGetTopNCountriesInRegionBothWrong() {
         a.getTopNCountriesInRegion(null, 0);
     }
+
+    /**
+     * Test for getting top user provided (N) amount Countries in Region if input is normal
+     */
     @Test
     void testGetTopNCountriesInRegionWrongLimit() {
         a.getTopNCountriesInRegion("Baltic Countries", -1);
     }
+
+    /**
+     * Test for getting top user provided (N) amount Countries in Region if input is null
+     */
     @Test
     void testGetTopNCountriesInRegionWrongRegion() {
         a.getTopNCountriesInRegion(null, 4);
     }
+
+    /**
+     * Test for getting top user provided (N) amount Countries in Region if input is null
+     */
     @Test
     void testGetTopNCountriesInRegionBasic() {
         a.getTopNCountriesInRegion("Baltic Countries", 5);
     }
+
+    /**
+     * Test for getting all Capital Cities
+     */
     @Test
     void testGetAllCapitalCitiesTrue() {
         a.getAllCapitalCities();
     }
+
+    /**
+     * Test for getting all Capital Cities in Continent if input is normal
+     */
     @Test
     void testGetAllCapitalCitiesInContinent() {
         a.getAllCapitalCitiesInContinent("Africa");
     }
+
+    /**
+     * Test for getting all Capital Cities in Continent if input is null
+     */
     @Test
     void testGetAllCapitalCitiesInContinentWrongContinent() {
         a.getAllCapitalCitiesInContinent(null);
     }
+
+    /**
+     * Test for getting all Capital Cities in Region if input is normal
+     */
     @Test
     void testGetAllCapitalCitiesInRegion() {
         a.getAllCapitalCitiesInRegion("Caribbean");
     }
+
+    /**
+     * Test for getting top user provided (N) amount Capital Cities in Region if input is null
+     */
     @Test
     void testGetNCapitalCitiesInRegionWrongRegion() {
         a.getNCapitalCitiesInRegion(null, 4);
     }
+
+    /**
+     * Test for getting top user provided (N) amount Capital Cities Population if input is null
+     */
     @Test
     void testGetNCapitalCitiesPopulationWrongLimit() {
         a.getNCapitalCitiesPopulation(-1);
     }
+
+    /**
+     * Test for getting top user provided (N) amount Capital Cities Population if input is normal
+     */
     @Test
     void testGetNCapitalCitiesPopulationBasic() {
         a.getNCapitalCitiesPopulation(5);
     }
 
+    /**
+     * Test for getting top user provided (N) amount Capital Cities in Continent if input is null
+     */
     @Test
     void testGetNCapitalCitiesInContinentBothWrong() { a.getNCapitalCitiesInContinent(null, 0); }
+
+    /**
+     * Test for getting top user provided (N) amount Capital Cities in Continent if input is normal
+     */
     @Test
     void testGetNCapitalCitiesInContinentWrongLimit() {
         a.getNCapitalCitiesInContinent("Asia", -1);
     }
+
+    /**
+     * Test for getting top user provided (N) amount Capital Cities in Continent if input is null
+     */
     @Test
     void testGetNCapitalCitiesInContinentWrongContinent() {
         a.getNCapitalCitiesInContinent(null, 5);
     }
+
+    /**
+     * Test for getting top user provided (N) amount Capital Cities in Continent if input is normal
+     */
     @Test
     void testGetNCapitalCitiesInContinentBasic() {
         a.getNCapitalCitiesInContinent("Asia", 5);
     }
 
     // *** language tests ***
+
+    /**
+     * Test for getting Language
+     */
     @Test
     void testLanguage(){
         a.getLanguage();
     }
+
+    /**
+     * Test for displaying Language when input is null
+     */
     @Test
     void testDisplayLanguageNull(){
         displayLanguage(null);
     }
+
+    /**
+     * Test for displaying Language with no given input
+     */
     @Test
     void testDisplayLanguageEmpty(){
         ArrayList languages = new ArrayList();
         displayLanguage(languages);
     }
+
+    /**
+     * Test for Class Language
+     */
     @Test
     void testClassLanguage(){
         Language c = new Language();
@@ -462,6 +734,10 @@ class AppTest
         c.getPercentage();
         c.getPopulation();
     }
+
+    /**
+     * Test for displaying Language when input is normal
+     */
     @Test
     void testDisplayLanguageNormal(){
         ArrayList <Language> languages = new ArrayList();
@@ -470,6 +746,10 @@ class AppTest
         languages.add(l);
         displayLanguage(languages);
     }
+
+    /**
+     * Test for displaying Language when input is null
+     */
     @Test
     void testDisplayLanguageNullEntry(){
         ArrayList <Language> languages = new ArrayList();
@@ -478,38 +758,74 @@ class AppTest
     }
 
     // *** Population reports ***
+
+    /**
+     * Test for getting City Population by Continent
+     */
     @Test
     void getTestPopulationInCityByContinent(){
         a.getPopulationInCityByContinent();
     }
+
+    /**
+     * Test for getting City Population by Country
+     */
     @Test
     void getTestPopulationInCityByCountry(){
         a.getPopulationInCityByCountry();
     }
+
+    /**
+     * Test for getting City Population by Region
+     */
     @Test
     void getTestPopulationInCityByRegion(){
         a.getPopulationInCityByRegion();
     }
+
+    /**
+     * Test for getting City Population
+     */
     @Test
     void getTestCityPopulation(){
         a.getCityPopulation("Madrid");
     }
+
+    /**
+     * Test for getting District Population
+     */
     @Test
     void getTestDistrictPopulation(){
         a.getPopulationDistrict("Katsina");
     }
+
+    /**
+     * Test for getting Continent Population
+     */
     @Test
     void getTestContinentPopulation(){
         a.getContinentPopulation("Europe");
     }
+
+    /**
+     * Test for getting Country Population
+     */
     @Test
     void getTestCountryPopulation(){
         a.getCountryPopulation("Spain");
     }
+
+    /**
+     * Test for getting World Population
+     */
     @Test
     void getTestWorldPopulation(){
         a.getWorldPopulation();
     }
+
+    /**
+     * Test for Language Class
+     */
     @Test
     void testLanguageConstructor(){
         Language l = new Language();
@@ -522,6 +838,10 @@ class AppTest
         l.toString();
 
     }
+
+    /**
+     * Test for Population Class
+     */
     @Test
     void testPopulationConstructor(){
         Population p = new Population();
