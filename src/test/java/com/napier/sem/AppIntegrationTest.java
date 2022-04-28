@@ -357,7 +357,6 @@ public class AppIntegrationTest {
     /**
      * Integration Test for getting all Capital Cities in a Continent
      */
-
     @Test
     void testGetAllCapitalCitiesInContinent() {
         ArrayList<City> top2 = app.getAllCapitalCitiesInContinent("Africa");
